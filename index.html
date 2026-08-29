@@ -2,650 +2,391 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>🌷崔崔的减肥打卡</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#ffdce9">
+<title>🌷 崔崔的减肥打卡</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
-}
-
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{
   margin:0;
-  padding:20px 16px 50px;
+  padding:20px 16px 90px;
   background:#f5f7fb;
   color:#222;
   font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",
-  "Helvetica Neue",Arial,sans-serif;
+  "Helvetica Neue",Arial,sans-serif
 }
-
-.app{
-  max-width:760px;
-  margin:auto;
+.app{max-width:760px;margin:auto}
+.card,.hero{
+  background:#fff;
+  border:2px solid #f3bfd2;
+  border-radius:25px;
+  box-shadow:0 7px 22px #d9c9d818;
 }
-
-.header{
-  text-align:center;
-  padding:25px 10px 20px;
+.hero{
+  padding:22px 18px;
+  background:linear-gradient(135deg,#fff,#ffeaf2);
 }
-
-.header h1{
-  margin:0;
-  font-size:32px;
-  font-weight:800;
+.brand{display:flex;align-items:center;gap:12px}
+.logo{
+  width:52px;height:52px;border-radius:50%;
+  display:grid;place-items:center;
+  background:#fff;border:2px solid #f2a8c3;
+  font-size:30px
 }
+h1{margin:0;font-size:26px;color:#7b2949}
+.sub{margin:5px 0 0;color:#a16c7e;font-size:15px}
 
-.header p{
-  margin:10px 0 0;
-  color:#888;
-  font-size:18px;
-}
-
-.card{
-  background:white;
-  border-radius:28px;
-  padding:25px;
-  margin-bottom:18px;
-  box-shadow:0 5px 25px rgba(0,0,0,.05);
-}
-
-.weight-grid{
+.grid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:16px;
+  gap:10px;
+  margin-top:12px
 }
-
-label{
-  display:block;
-  color:#666;
-  font-size:17px;
-  margin-bottom:9px;
+.field{
+  background:#fff;border:1px solid #efc9d8;
+  border-radius:15px;padding:11px
 }
-
-input,textarea{
-  width:100%;
-  border:2px solid #e3e3e3;
-  border-radius:18px;
-  padding:16px;
-  font-size:18px;
-  outline:none;
-  background:white;
+.field label{display:block;font-size:13px;color:#936c7b}
+.field input{
+  width:100%;border:0;outline:0;
+  font-size:20px;color:#642d46;
+  margin-top:5px;background:transparent
 }
-
-input:focus,textarea:focus{
-  border-color:#777;
+.card{padding:18px;margin-top:14px}
+.card h2{font-size:20px;margin:0 0 12px}
+.pill{
+  float:right;font-size:13px;
+  background:#fff0f5;padding:6px 10px;
+  border-radius:99px;color:#a23b61
 }
+.task{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 0;border-bottom:1px dashed #f0ceda
+}
+.task:last-child{border:0}
+.check{
+  width:36px;height:36px;
+  border:2px solid #e3a8bf;
+  border-radius:11px;
+  display:grid;place-items:center;
+  color:transparent;flex:none;
+  background:#fff
+}
+.task.done .check{
+  background:#ef7da7;
+  border-color:#ef7da7;
+  color:white
+}
+.task.done b{text-decoration:line-through;opacity:.55}
+.task b{font-size:17px}
+.progress{
+  height:14px;background:#f9e2eb;
+  border-radius:99px;overflow:hidden
+}
+.progress div{
+  height:100%;width:0;
+  background:linear-gradient(90deg,#ef8eae,#d95c87);
+  transition:.3s
+}
+.percent{text-align:center;font-size:28px;font-weight:800;color:#a23b61;margin:8px}
 
 textarea{
-  min-height:120px;
-  resize:none;
+  width:100%;min-height:110px;
+  border:1px solid #e8ccd8;
+  border-radius:12px;
+  padding:12px;font-size:16px;
+  outline:0;resize:vertical
 }
-
-h2{
-  margin:0 0 22px;
-  font-size:26px;
-}
-
-.check-item{
-  display:flex;
-  align-items:center;
-  gap:15px;
-  padding:13px 0;
-  font-size:21px;
-  color:#666;
-}
-
-.check-item input{
-  appearance:none;
-  width:54px;
-  height:54px;
-  padding:0;
-  flex:none;
-  border:3px solid #aaa;
+button{
+  width:100%;border:0;
   border-radius:16px;
-  background:white;
-  position:relative;
+  padding:16px;
+  font-size:18px;font-weight:700;
+  cursor:pointer
 }
-
-.check-item input:checked{
-  background:#3d8bfd;
-  border-color:#3d8bfd;
-}
-
-.check-item input:checked::after{
-  content:"✓";
-  position:absolute;
-  color:white;
-  font-size:37px;
-  font-weight:bold;
-  left:9px;
-  top:1px;
-}
+.save{background:#222;color:white;margin-top:14px}
+.clear{background:#fff;border:1px solid #e0ccd5;color:#9b687c;margin-top:10px}
 
 .stats{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:8px;
-  text-align:center;
+  gap:8px;text-align:center
 }
-
 .stat{
-  color:#888;
-  font-size:16px;
+  padding:12px 5px;
+  background:#fff7fa;
+  border-radius:15px
 }
+.stat span{display:block;color:#a16c7e;font-size:13px}
+.stat strong{font-size:25px;color:#222}
 
-.stat strong{
-  display:block;
-  color:#222;
-  font-size:24px;
-  margin-top:4px;
+.history-item{
+  padding:12px 0;
+  border-bottom:1px dashed #ead2dc
 }
-
-.save{
-  width:100%;
-  border:0;
-  border-radius:22px;
-  padding:19px;
-  background:#222;
-  color:white;
-  font-size:21px;
-  font-weight:bold;
-}
-
-.save:active{
-  transform:scale(.98);
-}
-
-.history{
-  margin-top:10px;
-}
-
-.history-row{
-  display:grid;
-  grid-template-columns:1.1fr .7fr 1.8fr;
-  gap:8px;
-  padding:13px 0;
-  border-bottom:1px solid #eee;
-  font-size:15px;
-}
-
-.history-row:last-child{
-  border-bottom:0;
-}
-
-.good{
-  color:#3d8bfd;
-  font-weight:bold;
-}
-
-.empty{
-  color:#999;
-  text-align:center;
-  padding:20px 0;
-}
+.history-item:last-child{border:0}
+.history-date{font-weight:700}
+.history-detail{color:#777;margin-top:4px;font-size:14px}
 
 .tip{
-  text-align:center;
-  color:#999;
-  margin-top:14px;
-  font-size:14px;
-}
-
-.danger{
-  width:100%;
-  margin-top:15px;
-  padding:13px;
-  border-radius:16px;
-  border:1px solid #ddd;
-  background:white;
-  color:#888;
+  text-align:center;color:#a16c7e;
+  font-size:13px;margin-top:12px
 }
 
 @media(max-width:500px){
-  body{
-    padding:12px 12px 40px;
-  }
-
-  .header h1{
-    font-size:28px;
-  }
-
-  .card{
-    padding:20px;
-    border-radius:24px;
-  }
-
-  .weight-grid{
-    gap:10px;
-  }
-
-  .check-item{
-    font-size:19px;
-  }
-
-  .check-item input{
-    width:50px;
-    height:50px;
-  }
+  .grid{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
 
 <body>
-
 <div class="app">
 
-  <div class="header">
-    <h1>🌷 崔崔的减肥打卡</h1>
-    <p>每天一点点，坚持就是胜利</p>
-  </div>
-
-  <div class="card">
-    <div class="weight-grid">
-
-      <div>
-        <label>今天体重（kg）</label>
-        <input id="weight" type="number" step="0.1" placeholder="例如 60.5">
-      </div>
-
-      <div>
-        <label>目标体重（kg）</label>
-        <input id="target" type="number" step="0.1" placeholder="例如 55">
-      </div>
-
+<section class="hero">
+  <div class="brand">
+    <div class="logo">🌷</div>
+    <div>
+      <h1>崔崔的减肥打卡</h1>
+      <div class="sub">每天一点点，坚持就是胜利</div>
     </div>
   </div>
 
-  <div class="card">
-
-    <h2>📋 今日打卡</h2>
-
-    <label class="check-item">
-      <input type="checkbox" id="water">
-      <span>💧 喝够水</span>
-    </label>
-
-    <label class="check-item">
-      <input type="checkbox" id="exercise">
-      <span>🏃 完成运动</span>
-    </label>
-
-    <label class="check-item">
-      <input type="checkbox" id="diet">
-      <span>🥗 控制饮食</span>
-    </label>
-
-    <label class="check-item">
-      <input type="checkbox" id="drink">
-      <span>🥤 零奶茶 / 咖啡</span>
-    </label>
-
-  </div>
-
-  <div class="card">
-
-    <h2>📝 今日备注</h2>
-
-    <textarea id="note"
-      placeholder="记录今天的状态、心情、饮食情况……"></textarea>
-
-  </div>
-
-  <div class="card">
-
-    <div class="stats">
-
-      <div class="stat">
-        连续打卡
-        <strong id="streak">0天</strong>
-      </div>
-
-      <div class="stat">
-        今日完成
-        <strong id="progress">0/4</strong>
-      </div>
-
-      <div class="stat">
-        体重变化
-        <strong id="change">--</strong>
-      </div>
-
+  <div class="grid">
+    <div class="field">
+      <label>今天体重（kg）</label>
+      <input id="weight" type="number" step="0.1" placeholder="例如 60.5">
     </div>
 
+    <div class="field">
+      <label>目标体重（kg）</label>
+      <input id="target" type="number" step="0.1" placeholder="例如 55">
+    </div>
+  </div>
+</section>
+
+<section class="card">
+  <h2>📋 今日打卡 <span class="pill" id="count">0/4</span></h2>
+
+  <div class="task" data-id="water">
+    <div class="check">✓</div>
+    <b>💧 喝够水</b>
   </div>
 
-  <button class="save" onclick="saveToday()">
-    💾 保存今日打卡
-  </button>
-
-  <div class="tip">
-    数据保存在你自己的手机浏览器中
+  <div class="task" data-id="sport">
+    <div class="check">✓</div>
+    <b>🏃 完成运动</b>
   </div>
 
-  <div class="card" style="margin-top:25px;">
-
-    <h2>📅 历史打卡</h2>
-
-    <div id="history" class="history"></div>
-
-    <button class="danger" onclick="clearHistory()">
-      清空历史记录
-    </button>
-
+  <div class="task" data-id="food">
+    <div class="check">✓</div>
+    <b>🥗 控制饮食</b>
   </div>
+
+  <div class="task" data-id="drink">
+    <div class="check">✓</div>
+    <b>🥤 零奶茶 / 咖啡</b>
+  </div>
+</section>
+
+<section class="card">
+  <h2>📈 今日完成度</h2>
+  <div class="percent" id="percent">0%</div>
+  <div class="progress">
+    <div id="progress"></div>
+  </div>
+</section>
+
+<section class="card">
+  <h2>📝 今日备注</h2>
+  <textarea id="note" placeholder="今天感觉怎么样？想吃什么？运动了多久？"></textarea>
+</section>
+
+<section class="card">
+  <h2>📊 我的进度</h2>
+
+  <div class="stats">
+    <div class="stat">
+      <span>连续打卡</span>
+      <strong id="streak">0</strong>
+    </div>
+
+    <div class="stat">
+      <span>今日完成</span>
+      <strong id="todayDone">0/4</strong>
+    </div>
+
+    <div class="stat">
+      <span>体重变化</span>
+      <strong id="change">--</strong>
+    </div>
+  </div>
+</section>
+
+<button class="save" onclick="saveToday()">💾 保存今日打卡</button>
+
+<div class="tip">数据保存在你自己的手机浏览器中</div>
+
+<section class="card">
+  <h2>📅 历史打卡</h2>
+  <div id="history"></div>
+  <button class="clear" onclick="clearHistory()">清空历史记录</button>
+</section>
 
 </div>
 
 <script>
+const KEY="cuicuiDietData";
 
-const STORAGE_KEY = "cuicui_diet_history";
+let data=JSON.parse(localStorage.getItem(KEY)||"{}");
 
-function getHistory(){
-  try{
-    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-  }catch(e){
-    return [];
-  }
+function today(){
+  const d=new Date();
+  return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
 }
 
-function saveHistory(data){
-  localStorage.setItem(STORAGE_KEY,JSON.stringify(data));
+function getTasks(){
+  const result={};
+  document.querySelectorAll(".task").forEach(el=>{
+    result[el.dataset.id]=el.classList.contains("done");
+  });
+  return result;
 }
 
-function todayString(){
-  const d = new Date();
-  const y = d.getFullYear();
-  const m = String(d.getMonth()+1).padStart(2,"0");
-  const day = String(d.getDate()).padStart(2,"0");
-  return `${y}-${m}-${day}`;
-}
+function update(){
+  const tasks=getTasks();
+  const done=Object.values(tasks).filter(Boolean).length;
+  const percent=Math.round(done/4*100);
 
-function getCheckedCount(){
-  return [
-    document.getElementById("water").checked,
-    document.getElementById("exercise").checked,
-    document.getElementById("diet").checked,
-    document.getElementById("drink").checked
-  ].filter(Boolean).length;
-}
+  document.getElementById("count").textContent=done+"/4";
+  document.getElementById("todayDone").textContent=done+"/4";
+  document.getElementById("percent").textContent=percent+"%";
+  document.getElementById("progress").style.width=percent+"%";
 
-function updateProgress(){
+  let change="--";
+  const history=Object.values(data)
+    .filter(x=>x.weight)
+    .sort((a,b)=>a.date.localeCompare(b.date));
 
-  const count = getCheckedCount();
-
-  document.getElementById("progress").textContent =
-    count + "/4";
-
-}
-
-function updateChange(){
-
-  const weight = parseFloat(
-    document.getElementById("weight").value
-  );
-
-  const history = getHistory();
-
-  if(isNaN(weight) || history.length === 0){
-    document.getElementById("change").textContent="--";
-    return;
+  if(history.length>=2){
+    const first=Number(history[0].weight);
+    const last=Number(history[history.length-1].weight);
+    const diff=(last-first).toFixed(1);
+    change=(diff>0?"+":"")+diff;
   }
 
-  const previous = [...history]
-    .reverse()
-    .find(x => x.weight && x.date !== todayString());
-
-  if(!previous){
-    document.getElementById("change").textContent="--";
-    return;
-  }
-
-  const diff = weight - Number(previous.weight);
-
-  if(diff > 0){
-    document.getElementById("change").textContent =
-      "+" + diff.toFixed(1);
-  }else{
-    document.getElementById("change").textContent =
-      diff.toFixed(1);
-  }
+  document.getElementById("change").textContent=change;
 }
 
-function calculateStreak(){
-
-  const history = getHistory();
-
-  if(history.length === 0){
-    return 0;
-  }
-
-  const dates = new Set(history.map(x=>x.date));
-
-  let streak = 0;
-
-  const d = new Date();
-
-  while(true){
-
-    const y = d.getFullYear();
-    const m = String(d.getMonth()+1).padStart(2,"0");
-    const day = String(d.getDate()).padStart(2,"0");
-
-    const key = `${y}-${m}-${day}`;
-
-    if(!dates.has(key)){
-      break;
-    }
-
-    streak++;
-
-    d.setDate(d.getDate()-1);
-  }
-
-  return streak;
-}
-
-function updateStreak(){
-
-  document.getElementById("streak").textContent =
-    calculateStreak() + "天";
-
-}
-
-function renderHistory(){
-
-  const history = getHistory();
-
-  const box = document.getElementById("history");
-
-  if(history.length === 0){
-
-    box.innerHTML =
-      '<div class="empty">还没有历史记录，今天开始吧 🌷</div>';
-
-    return;
-  }
-
-  const sorted = [...history].sort(
-    (a,b)=>b.date.localeCompare(a.date)
-  );
-
-  box.innerHTML = sorted.map(item => {
-
-    const done = item.completed || 0;
-
-    return `
-      <div class="history-row">
-        <div>${item.date}</div>
-
-        <div>
-          ${item.weight ? item.weight+" kg" : "--"}
-        </div>
-
-        <div class="${done === 4 ? "good" : ""}">
-          ${done}/4
-          ${item.note ? " · "+escapeHtml(item.note) : ""}
-        </div>
-      </div>
-    `;
-
-  }).join("");
-
-}
-
-function escapeHtml(text){
-
-  return String(text)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-
-}
+document.querySelectorAll(".task").forEach(task=>{
+  task.addEventListener("click",()=>{
+    task.classList.toggle("done");
+    update();
+  });
+});
 
 function saveToday(){
+  const date=today();
 
-  const date = todayString();
-
-  const weightValue =
-    document.getElementById("weight").value;
-
-  const targetValue =
-    document.getElementById("target").value;
-
-  const record = {
-
-    date:date,
-
-    weight:weightValue
-      ? Number(weightValue)
-      : null,
-
-    target:targetValue
-      ? Number(targetValue)
-      : null,
-
-    water:document.getElementById("water").checked,
-
-    exercise:document.getElementById("exercise").checked,
-
-    diet:document.getElementById("diet").checked,
-
-    drink:document.getElementById("drink").checked,
-
-    completed:getCheckedCount(),
-
-    note:document.getElementById("note").value.trim()
-
+  data[date]={
+    date,
+    weight:document.getElementById("weight").value,
+    target:document.getElementById("target").value,
+    tasks:getTasks(),
+    note:document.getElementById("note").value
   };
 
-  let history = getHistory();
-
-  const index =
-    history.findIndex(x=>x.date===date);
-
-  if(index >= 0){
-    history[index] = record;
-  }else{
-    history.push(record);
-  }
-
-  saveHistory(history);
-
-  updateProgress();
-  updateChange();
-  updateStreak();
+  localStorage.setItem(KEY,JSON.stringify(data));
   renderHistory();
+  update();
 
-  alert("🌷 今天的打卡已经保存啦！");
-
+  alert("🌷 今日打卡保存成功！");
 }
 
 function loadToday(){
+  const item=data[today()];
+  if(!item)return;
 
-  const date = todayString();
+  document.getElementById("weight").value=item.weight||"";
+  document.getElementById("target").value=item.target||"";
+  document.getElementById("note").value=item.note||"";
 
-  const history = getHistory();
+  document.querySelectorAll(".task").forEach(el=>{
+    if(item.tasks && item.tasks[el.dataset.id]){
+      el.classList.add("done");
+    }
+  });
+}
 
-  const record =
-    history.find(x=>x.date===date);
+function renderHistory(){
+  const box=document.getElementById("history");
+  const list=Object.values(data).sort((a,b)=>b.date.localeCompare(a.date));
 
-  if(!record){
+  if(!list.length){
+    box.innerHTML='<div style="color:#999">还没有历史记录</div>';
     return;
   }
 
-  if(record.weight !== null){
-    document.getElementById("weight").value =
-      record.weight;
+  box.innerHTML=list.map(item=>{
+    const done=item.tasks?
+      Object.values(item.tasks).filter(Boolean).length:0;
+
+    return `
+      <div class="history-item">
+        <div class="history-date">📅 ${item.date}</div>
+        <div class="history-detail">
+          ⚖️ ${item.weight||"--"} kg　
+          🎯 ${item.target||"--"} kg　
+          ✅ ${done}/4
+        </div>
+        ${item.note?`<div class="history-detail">📝 ${item.note}</div>`:""}
+      </div>
+    `;
+  }).join("");
+
+  calculateStreak(list);
+}
+
+function calculateStreak(list){
+  if(!list.length){
+    document.getElementById("streak").textContent="0";
+    return;
   }
 
-  if(record.target !== null){
-    document.getElementById("target").value =
-      record.target;
+  const dates=list.map(x=>x.date).sort().reverse();
+  let streak=0;
+  let expected=new Date();
+
+  for(const date of dates){
+    const d=new Date(date+"T00:00:00");
+
+    const e=new Date(expected);
+    e.setHours(0,0,0,0);
+
+    if(d.getTime()===e.getTime()){
+      streak++;
+      expected.setDate(expected.getDate()-1);
+    }else if(streak===0){
+      continue;
+    }else{
+      break;
+    }
   }
 
-  document.getElementById("water").checked =
-    !!record.water;
-
-  document.getElementById("exercise").checked =
-    !!record.exercise;
-
-  document.getElementById("diet").checked =
-    !!record.diet;
-
-  document.getElementById("drink").checked =
-    !!record.drink;
-
-  document.getElementById("note").value =
-    record.note || "";
-
+  document.getElementById("streak").textContent=streak;
 }
 
 function clearHistory(){
-
-  if(!confirm("确定要清空所有历史打卡吗？")){
-    return;
+  if(confirm("确定要清空所有历史记录吗？")){
+    localStorage.removeItem(KEY);
+    data={};
+    location.reload();
   }
-
-  localStorage.removeItem(STORAGE_KEY);
-
-  document.getElementById("weight").value="";
-  document.getElementById("target").value="";
-  document.getElementById("note").value="";
-
-  document.querySelectorAll(
-    '.check-item input'
-  ).forEach(x=>x.checked=false);
-
-  updateProgress();
-  updateChange();
-  updateStreak();
-  renderHistory();
-
 }
 
-document.querySelectorAll(
-  '.check-item input'
-).forEach(input=>{
-
-  input.addEventListener(
-    "change",
-    updateProgress
-  );
-
-});
-
-document.getElementById("weight")
-  .addEventListener("input",updateChange);
-
 loadToday();
-updateProgress();
-updateChange();
-updateStreak();
 renderHistory();
-
+update();
 </script>
 
 </body>
