@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#ffdce9">
+<title>🌷 崔崔减肥打卡</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#fff5f9;color:#632d45;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue",Arial,sans-serif}.app{max-width:760px;margin:auto;padding:14px 14px 95px}
+.hero,.card{background:#fff;border:2px solid #f3bfd2;border-radius:25px;box-shadow:0 7px 22px #d96c9818}.hero{padding:18px;background:linear-gradient(135deg,#fff,#ffeaf2)}
+.brand{display:flex;align-items:center;gap:10px}.logo{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:#fff;border:2px solid #f2a8c3;font-size:27px}h1{margin:0;font-size:25px;color:#7b2949}.sub{margin-top:4px;color:#a16c7e}.cheer{margin-top:12px;padding:11px 13px;background:#fff;border-radius:15px;border:1px solid #f1cad8;font-weight:700}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}.field{background:#fff;border:1px solid #efc1d2;border-radius:15px;padding:9px}.field label{display:block;font-size:12px;color:#936c7b}.field input{width:100%;border:0;outline:0;font-size:19px;color:#642d46;margin-top:4px}
+.card{padding:16px;margin-top:13px}.card h2{font-size:19px;margin:0 0 12px}.pill{float:right;font-size:12px;background:#ffe5ef;padding:6px 9px;border-radius:99px;color:#a23b61}
+.task{display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px dashed #f0ceda}.task:last-child{border:0}.check{width:34px;height:34px;border:2px solid #e3a8bf;border-radius:11px;display:grid;place-items:center;color:transparent;flex:none}.check.on{background:#ef7da7;border-color:#ef7da7;color:white}.task b{font-size:16px}.task small{display:block;color:#a27a89;margin-top:2px}
+.water{display:flex;gap:5px;margin-left:auto}.water button{border:1px solid #c7ddea;background:#f8fcff;border-radius:8px;padding:5px;font-size:14px}.water button.on{background:#c9eaff}
+textarea{width:100%;min-height:105px;border:1px solid #efc1d2;border-radius:15px;padding:11px;resize:vertical;outline:0}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;text-align:center}.stat{background:#fff3f7;border-radius:15px;padding:10px 4px}.stat small{display:block;color:#9a7281}.stat strong{font-size:21px;color:#6f2947}
+.progress{height:12px;background:#ffe4ee;border-radius:99px;overflow:hidden;margin:10px 0}.progress i{display:block;height:100%;background:#ee78a3;width:0;border-radius:99px}
+.save,.secondary{width:100%;border-radius:17px;padding:14px;font-weight:800}.save{background:#e96f9c;color:white;font-size:17px}.secondary{margin-top:9px;background:#fff;border:1px solid #edbfd0;color:#8d3b59}.notice{text-align:center;color:#9b7382;font-size:13px}
+.tabs{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);width:min(720px,calc(100% - 20px));background:#ffffffdd;backdrop-filter:blur(14px);border:1px solid #efbfd0;border-radius:22px;padding:7px;display:grid;grid-template-columns:repeat(3,1fr);z-index:5}.tab{padding:7px;border-radius:15px;color:#9a6b7c;background:transparent}.tab.active{background:#ffe1ec;color:#a0315c;font-weight:800}.page{display:none}.page.active{display:block}.badges{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.badge{text-align:center;background:#fff5f8;border:1px solid #f3d0dc;border-radius:15px;padding:13px 5px}.badge b{font-size:23px;display:block}.badge span{font-size:12px}
+</style>
+</head>
+<body>
+<div class="app">
+<section class="hero">
+<div class="brand"><div class="logo">🌷</div><div><h1>崔崔减肥打卡 ♡</h1><div class="sub">每天一点点，坚持就是胜利</div></div></div>
+<div class="cheer">今天也要对自己温柔一点，加油！✨</div>
+<div class="grid"><div class="field"><label>今日体重（kg）</label><input id="weight" type="number" step="0.1" placeholder="例如 60.5"></div><div class="field"><label>目标体重（kg）</label><input id="goal" type="number" step="0.1" placeholder="例如 55"></div></div>
+</section>
+
+<section id="today" class="page active">
+<div class="card"><h2>⭐ 今日任务 <span id="donePill" class="pill">0/4</span></h2>
+<div class="task"><div class="check" data-k="water">✓</div><div><b>💧 喝够水</b><small>每天努力喝水</small></div><div class="water" id="water"></div></div>
+<div class="task"><div class="check" data-k="exercise">✓</div><div><b>🏃 完成运动</b><small>今天也动一动</small></div></div>
+<div class="task"><div class="check" data-k="food">✓</div><div><b>🥗 控制饮食</b><small>三餐认真吃</small></div></div>
+<div class="task"><div class="check" data-k="drink">✓</div><div><b>🥤 零奶茶 / 咖啡</b><small>今天也为自己坚持一次</small></div></div></div>
+<div class="card"><h2>📝 今日备注</h2><textarea id="note" placeholder="记录今天的状态、心情、饮食情况……"></textarea></div>
+<div class="card"><div class="stats"><div class="stat"><small>连续打卡</small><strong id="streak">0天</strong></div><div class="stat"><small>今日完成</small><strong id="done">0/4</strong></div><div class="stat"><small>体重变化</small><strong id="change">--</strong></div></div></div>
+<div class="card"><button class="save" id="save">💾 保存今日打卡</button><div class="notice">数据保存在你的手机浏览器中</div></div>
+</section>
+
+<section id="body" class="page">
+<div class="card"><h2>🌸 我的身体</h2><div class="stats"><div class="stat"><small>当前体重</small><strong id="current">--</strong></div><div class="stat"><small>目标体重</small><strong id="target">--</strong></div><div class="stat"><small>已减</small><strong id="lost">--</strong></div></div></div>
+<div class="card"><h2>💗 身体状态</h2><div class="task"><div><b>😊 今天心情</b></div><select id="mood"><option>很好</option><option>不错</option><option>一般</option><option>有点累</option><option>很疲惫</option></select></div><div class="task"><div><b>🌙 睡眠</b></div><select id="sleep"><option>很好</option><option>一般</option><option>较差</option></select></div></div>
+</section>
+
+<section id="mine" class="page">
+<div class="card"><h2>⭐ 我的进度</h2><div class="stats"><div class="stat"><small>起始体重</small><strong id="start">--</strong></div><div class="stat"><small>当前体重</small><strong id="mcurrent">--</strong></div><div class="stat"><small>目标体重</small><strong id="mtarget">--</strong></div></div><div class="progress"><i id="bar"></i></div><div id="progressText" class="notice">先记录一次体重吧 🌷</div></div>
+<div class="card"><h2>🏆 我的成就</h2><div class="badges"><div class="badge"><b>🔥</b><span id="bstreak">连续打卡 0 天</span></div><div class="badge"><b>💧</b><span id="bwater">喝水达人</span></div><div class="badge"><b>🥤</b><span id="bdrink">今日加油</span></div></div></div>
+</section>
+</div>
+<nav class="tabs"><button class="tab active" data-p="today">🏠<br>今日</button><button class="tab" data-p="body">💗<br>身体</button><button class="tab" data-p="mine">⭐<br>我的</button></nav>
+<script>
+const KEY='cuicui_diet_v2';
+const empty={weight:'',goal:'',note:'',tasks:{water:false,exercise:false,food:false,drink:false},water:0,mood:'很好',sleep:'很好',history:[],start:''};
+let old={};try{old=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+let s={...empty,...old,tasks:{...empty.tasks,...(old.tasks||{})},history:old.history||[]};
+const $=x=>document.getElementById(x);
+function render(){ $('weight').value=s.weight||'';$('goal').value=s.goal||'';$('note').value=s.note||'';$('mood').value=s.mood||'很好';$('sleep').value=s.sleep||'很好';
+document.querySelectorAll('.check').forEach(x=>x.classList.toggle('on',!!s.tasks[x.dataset.k]));let d=Object.values(s.tasks).filter(Boolean).length;$('done').textContent=d+'/4';$('donePill').textContent=d+'/4';$('streak').textContent=streak()+'天';
+let first=Number(s.start)||Number(s.history[0]?.weight)||0,cur=Number(s.weight)||Number(s.history.at(-1)?.weight)||0,g=Number(s.goal)||0;
+$('current').textContent=cur?cur.toFixed(1):'--';$('target').textContent=g?g.toFixed(1):'--';$('lost').textContent=first&&cur?(first-cur).toFixed(1):'--';$('start').textContent=first?first.toFixed(1):'--';$('mcurrent').textContent=cur?cur.toFixed(1):'--';$('mtarget').textContent=g?g.toFixed(1):'--';$('change').textContent=first&&cur?((cur-first>0?'+':'')+(cur-first).toFixed(1)):'--';
+let pct=first&&g&&cur?Math.max(0,Math.min(100,(first-cur)/(first-g)*100)):0;$('bar').style.width=pct+'%';$('progressText').textContent=first&&g?`减重进度约 ${Math.round(pct)}% · 还差 ${(cur-g).toFixed(1)} kg`:'先记录一次体重吧 🌷';$('bstreak').textContent='连续打卡 '+streak()+' 天';$('bwater').textContent=s.water>=6?'今日喝水达人':'再喝几杯就达成';$('bdrink').textContent=s.tasks.drink?'今天 0 杯':'今天加油';}
+function streak(){let ds=[...new Set(s.history.map(x=>x.date))].sort().reverse(),n=0,now=new Date();for(let d of ds){let a=new Date(d);let b=new Date(now);a.setHours(0,0,0,0);b.setHours(0,0,0,0);let diff=Math.round((b-a)/86400000);if(diff===n)n++;else if(diff>n)break}return n}
+function water(){let box=$('water');box.innerHTML='';for(let i=1;i<=8;i++){let b=document.createElement('button');b.textContent=i<=s.water?'💧':'○';b.className=i<=s.water?'on':'';b.onclick=()=>{s.water=i;s.tasks.water=i>=6;render();water()};box.appendChild(b)}}
+document.querySelectorAll('.check').forEach(x=>x.onclick=()=>{s.tasks[x.dataset.k]=!s.tasks[x.dataset.k];render()});
+$('weight').oninput=e=>{s.weight=e.target.value;if(!s.start&&e.target.value)s.start=e.target.value;render()};$('goal').oninput=e=>{s.goal=e.target.value;render()};$('note').oninput=e=>s.note=e.target.value;$('mood').onchange=e=>s.mood=e.target.value;$('sleep').onchange=e=>s.sleep=e.target.value;
+$('save').onclick=()=>{let date=new Date().toISOString().slice(0,10),item={date,weight:Number(s.weight)||null,done:Object.values(s.tasks).filter(Boolean).length,note:s.note};let i=s.history.findIndex(x=>x.date===date);if(i>=0)s.history[i]=item;else s.history.push(item);localStorage.setItem(KEY,JSON.stringify(s));render();water();alert('🌷 今天的打卡已经保存啦！')};
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));$(t.dataset.p).classList.add('active');scrollTo(0,0)});
+render();water();
+</script>
+</body></html>
