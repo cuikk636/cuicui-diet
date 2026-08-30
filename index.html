@@ -3,681 +3,713 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#ffd9e7">
-
+<meta name="theme-color" content="#fff7fb">
 <title>🌷 崔崔的减肥打卡</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --pink:#ff4fa3;
+  --pink2:#ff82bd;
+  --light:#fff3f8;
+  --line:#f2c9dc;
+  --text:#531343;
+  --blue:#35659a;
 }
-
 body{
   margin:0;
-  padding:18px 14px 100px;
-  background:#f7f7fa;
-  color:#222;
-  font-family:-apple-system,BlinkMacSystemFont,
-  "Helvetica Neue",Arial,sans-serif;
+  background:#fff7fb;
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Arial,sans-serif;
 }
-
+button,input,textarea{font:inherit}
+button{cursor:pointer}
 .app{
-  max-width:760px;
+  width:min(100%,760px);
   margin:auto;
+  min-height:100vh;
+  padding:14px 14px 100px;
 }
+.page{display:none}
+.page.active{display:block}
 
-/* 页面 */
-.page{
-  display:none;
+/* 通用卡片 */
+.card{
+  background:rgba(255,255,255,.82);
+  border:2px solid var(--line);
+  border-radius:22px;
+  margin:10px 0;
+  padding:15px;
+  box-shadow:0 4px 15px rgba(240,96,164,.06);
 }
-
-.page.active{
-  display:block;
+.title{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:22px;
+  font-weight:900;
+  margin-bottom:12px;
 }
+.small{font-size:13px;color:#777}
+.blue{color:var(--blue)}
+.pink{color:var(--pink)}
+.center{text-align:center}
 
 /* 顶部 */
-.header{
-  text-align:center;
-  padding:10px 8px 18px;
-}
-
-.header h1{
-  margin:0;
-  font-size:29px;
-}
-
-.header p{
-  margin:8px 0 0;
-  color:#9b7181;
-  font-size:15px;
-}
-
-/* 卡片 */
-.card{
-  background:#fff;
-  border:2px solid #f0c4d5;
-  border-radius:24px;
-  padding:21px 17px;
-  margin-bottom:16px;
-  box-shadow:0 5px 18px rgba(180,120,145,.08);
-}
-
-.title{
-  font-size:23px;
-  font-weight:800;
-  margin-bottom:17px;
-}
-
-/* 首页进度 */
-.progress-box{
-  text-align:center;
-  padding:20px;
-  background:linear-gradient(135deg,#fff,#fff5f9);
-}
-
-.progress{
-  height:15px;
-  background:#f2e3e9;
-  border-radius:20px;
+.hero{
+  position:relative;
+  min-height:130px;
   overflow:hidden;
-  margin-top:17px;
+  background:linear-gradient(135deg,#fff,#fff1f7);
 }
-
-.progress-bar{
-  height:100%;
-  width:0%;
-  background:linear-gradient(90deg,#e89bb7,#c87999);
-  border-radius:20px;
-  transition:.3s;
-}
-
-.percent{
-  margin-top:9px;
-  color:#a66d82;
-  font-weight:bold;
-  font-size:19px;
-}
-
-/* 任务 */
-.tasks{
-  display:grid;
-  gap:12px;
-}
-
-.task{
+.hero-row{
   display:flex;
   align-items:center;
   gap:12px;
-  padding:16px;
-  border:1px solid #efdce4;
-  border-radius:18px;
-  background:#fff8fa;
 }
-
-.task.done{
-  background:#f9e7ef;
-}
-
-.check{
-  width:29px;
-  height:29px;
-  border:2px solid #d39aae;
+.avatar{
+  width:82px;height:82px;
   border-radius:50%;
   display:flex;
-  justify-content:center;
   align-items:center;
-  flex-shrink:0;
-  color:white;
-  font-weight:bold;
+  justify-content:center;
+  font-size:58px;
+  background:#ffd4e6;
+  border:2px solid #ff9cc9;
+  flex:none;
 }
-
-.task.done .check{
-  background:#c9859f;
+.hero h1{
+  margin:0;
+  font-size:27px;
+  line-height:1.2;
+  font-weight:950;
 }
-
-.task-text{
-  font-size:17px;
-  flex:1;
+.hero p{
+  margin:7px 0 0;
+  font-size:15px;
 }
-
-/* 输入 */
-textarea,
-input{
-  width:100%;
-  border:2px solid #ead2dc;
-  border-radius:17px;
-  padding:15px;
-  font-size:16px;
-  outline:none;
-  background:#fff;
-}
-
-textarea{
-  min-height:145px;
-  resize:none;
-}
-
-textarea:focus,
-input:focus{
-  border-color:#d595ae;
-}
-
-/* 统计 */
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:9px;
-}
-
-.stat{
-  background:#fff7fa;
-  border-radius:18px;
-  padding:15px 5px;
-  text-align:center;
-}
-
-.stat-label{
-  color:#9d7180;
-  font-size:13px;
-}
-
-.stat-value{
-  margin-top:7px;
-  font-size:23px;
-  font-weight:800;
-}
-
-/* 按钮 */
-button{
-  border:0;
-  border-radius:16px;
-  padding:14px 18px;
-  background:#d78fa8;
-  color:white;
-  font-size:16px;
-  font-weight:bold;
-}
-
-button:active{
-  transform:scale(.97);
-}
-
-.full-btn{
-  width:100%;
-  margin-top:12px;
-  font-size:18px;
-  padding:17px;
-}
-
-.dark-btn{
-  background:#292929;
+.hero-star{
+  position:absolute;
+  right:15px;
+  bottom:5px;
+  font-size:52px;
 }
 
 /* 体重 */
-.weight-row{
-  display:flex;
-  gap:9px;
+.weight-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:7px;
 }
-
-.weight-row input{
-  flex:1;
-  min-width:0;
-}
-
-.weight-row button{
-  flex-shrink:0;
-}
-
-/* 历史 */
-.history-item{
-  background:#fff7fa;
-  border:1px solid #f0dce4;
-  border-radius:17px;
-  padding:15px;
-  margin-bottom:10px;
-}
-
-.history-date{
-  font-weight:bold;
-  color:#875d6d;
-}
-
-.history-detail{
-  margin-top:7px;
-  color:#777;
-  font-size:14px;
-  line-height:1.6;
-}
-
-.empty{
+.metric{
   text-align:center;
-  color:#aaa;
-  padding:15px;
+  background:#fff7fb;
+  border:1px solid #f5d6e4;
+  border-radius:14px;
+  padding:10px 4px;
 }
-
-/* 经期 */
-.period-status{
-  text-align:center;
-  padding:20px;
-  border-radius:20px;
-  background:linear-gradient(135deg,#fff2f7,#fff);
-}
-
-.period-icon{
-  font-size:48px;
-}
-
-.period-status h2{
-  margin:8px 0;
-  font-size:23px;
-}
-
-.period-status p{
-  margin:5px 0;
-  color:#986e7e;
-}
-
-.form-group{
-  margin-bottom:15px;
-}
-
-.form-group label{
+.metric b{
   display:block;
-  margin-bottom:8px;
-  font-weight:bold;
-  color:#654c56;
+  font-size:22px;
+  margin-top:5px;
+}
+.progress{
+  height:12px;
+  background:#f8dce9;
+  border-radius:20px;
+  overflow:hidden;
+  margin:12px 0 6px;
+}
+.progress>span{
+  display:block;
+  height:100%;
+  width:34%;
+  background:linear-gradient(90deg,#ff4fa3,#ff91c6);
+  border-radius:20px;
+}
+.progress-label{
+  display:flex;
+  justify-content:space-between;
+  font-size:13px;
 }
 
-.form-group input{
+/* 今日任务 */
+.tasks{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:6px;
+}
+.task{
+  position:relative;
+  min-height:116px;
+  border:1px solid #f3cddd;
+  border-radius:15px;
+  background:#fff8fb;
+  padding:8px 3px;
+  text-align:center;
+}
+.task .ico{font-size:35px}
+.task .name{font-size:13px;margin-top:4px}
+.task .sub{font-size:11px;color:#35659a;margin-top:4px}
+.check{
+  position:absolute;
+  right:5px;
+  bottom:5px;
+  width:22px;height:22px;
+  border-radius:50%;
+  border:2px solid #f48abc;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  font-size:13px;
+}
+.task.done .check{background:#ff6fb1}
+.task.done .check:after{content:"✓"}
+
+/* 完成度 */
+.complete-row{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+.circle{
+  width:76px;height:76px;
+  border:8px solid #ff5eaa;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:18px;
+  font-weight:900;
+  background:#fff;
+}
+
+/* 备注 */
+.note-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.patrick{
+  font-size:62px;
+  line-height:1;
+}
+textarea{
   width:100%;
+  min-height:75px;
+  border:0;
+  resize:none;
+  outline:none;
+  color:#35659a;
+  background:transparent;
+  font-size:15px;
 }
 
-/* 经期数据 */
+/* 身体页经期 */
 .period-grid{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
+  grid-template-columns:repeat(4,1fr);
+  gap:7px;
 }
-
 .period-box{
-  background:#fff7fa;
-  border-radius:18px;
-  padding:17px 10px;
   text-align:center;
+  background:#fff3f8;
+  border:1px solid #f5d4e3;
+  border-radius:13px;
+  padding:10px 3px;
 }
-
-.period-box .label{
+.period-box .pi{font-size:22px}
+.period-box span{
+  display:block;
+  font-size:11px;
+  margin:4px 0;
+}
+.period-box b{font-size:15px}
+.period-tip{
+  margin-top:10px;
+  padding:9px;
+  border-radius:12px;
+  background:#fff6fa;
+  text-align:center;
   font-size:13px;
-  color:#9c7180;
 }
 
-.period-box .value{
-  margin-top:7px;
-  font-size:21px;
-  font-weight:800;
+/* 身体状态 */
+.status-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
 }
+.status{
+  position:relative;
+  height:120px;
+  border:1px solid #f3d2e1;
+  border-radius:14px;
+  background:#fff8fb;
+  text-align:center;
+  padding:7px 3px;
+}
+.status .emoji{
+  font-size:38px;
+  line-height:1;
+  margin-top:10px;
+  margin-bottom:8px;
+}
+.status.mood .emoji{
+  font-size:48px;      /* 笑脸放大 */
+  margin-top:18px;     /* 笑脸往下 */
+  margin-bottom:5px;
+}
+.status .sname{font-size:14px}
+.status .svalue{
+  font-size:12px;
+  color:#35659a;
+  margin-top:5px;
+}
+.ok{
+  position:absolute;
+  right:6px;
+  bottom:6px;
+  width:18px;height:18px;
+  border-radius:50%;
+  background:#5ddba4;
+  color:white;
+  font-size:12px;
+  line-height:18px;
+}
+
+/* 我的 */
+.achievements{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:7px;
+}
+.badge{
+  min-height:88px;
+  border:1px solid #f3d1df;
+  border-radius:13px;
+  background:#fff8fb;
+  text-align:center;
+  padding:8px 3px;
+}
+.badge .bi{font-size:32px}
+.badge div:last-child{font-size:11px;margin-top:5px}
+.record{
+  display:grid;
+  grid-template-columns:14px 70px 70px 50px 1fr;
+  gap:6px;
+  align-items:center;
+  padding:6px 0;
+  font-size:12px;
+  color:#35659a;
+}
+.dot{
+  width:9px;height:9px;
+  border-radius:50%;
+  background:#5edba4;
+}
+.record:nth-child(3) .dot{background:#ff70b2}
+.record:nth-child(4) .dot{background:#6fa8ff}
 
 /* 底部导航 */
 .nav{
   position:fixed;
+  z-index:20;
   left:50%;
-  bottom:10px;
   transform:translateX(-50%);
-  width:calc(100% - 22px);
-  max-width:700px;
-  background:rgba(255,255,255,.96);
-  border:1px solid #e5d5dc;
-  border-radius:22px;
-  padding:7px;
+  bottom:0;
+  width:min(100%,760px);
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:5px;
-  box-shadow:0 8px 30px rgba(0,0,0,.12);
-  z-index:100;
+  background:rgba(255,255,255,.96);
+  border-top:1px solid #f1cadd;
+  padding:8px 8px calc(8px + env(safe-area-inset-bottom));
+  box-shadow:0 -4px 18px rgba(215,72,140,.08);
 }
-
 .nav button{
+  border:0;
   background:transparent;
-  color:#888;
-  padding:10px 4px;
-  font-size:13px;
+  color:#a24b80;
+  border-radius:16px;
+  padding:6px;
+  font-size:12px;
+  font-weight:700;
 }
-
-.nav button.active{
-  background:#f7dce6;
-  color:#7f5264;
-}
-
-.nav-icon{
+.nav button .ni{
   display:block;
-  font-size:21px;
+  font-size:25px;
   margin-bottom:2px;
 }
-
-/* 小提示 */
-.tip{
-  color:#999;
-  text-align:center;
-  font-size:13px;
-  margin-top:10px;
-  line-height:1.5;
+.nav button.active{
+  color:#ff2d92;
+  background:#fff0f7;
 }
 
-@media(max-width:430px){
+/* 小横幅 */
+.banner{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:15px;
+  background:linear-gradient(90deg,#fff8dc,#fff0f8);
+  text-align:center;
+}
+.banner .patrick{font-size:48px}
 
-  body{
-    padding-left:11px;
-    padding-right:11px;
-  }
-
-  .header h1{
-    font-size:27px;
-  }
-
-  .title{
-    font-size:21px;
-  }
-
-  .stats{
-    gap:7px;
-  }
-
-  .stat-value{
-    font-size:21px;
-  }
-
-  .task-text{
-    font-size:16px;
-  }
+@media(max-width:390px){
+  .app{padding-left:9px;padding-right:9px}
+  .card{padding:12px}
+  .hero h1{font-size:24px}
+  .avatar{width:68px;height:68px;font-size:48px}
+  .task .ico{font-size:30px}
+  .task .name{font-size:12px}
 }
 </style>
 </head>
 
 <body>
-
 <div class="app">
 
-<!-- ==================== 第一页 ==================== -->
+<!-- ================= 第一页：今日 ================= -->
+<section class="page active" id="todayPage">
 
-<section id="page-home" class="page active">
-
-  <div class="header">
-    <h1>🌷 崔崔的减肥打卡</h1>
-    <p>每天进步一点点，坚持就是胜利</p>
-  </div>
-
-  <div class="card progress-box">
-
-    <div style="font-size:18px;font-weight:bold;">
-      今日完成进度
+  <div class="card hero">
+    <div class="hero-row">
+      <div class="avatar">⭐</div>
+      <div>
+        <h1>崔崔的减肥打卡 ♡</h1>
+        <p>每天一点点，坚持就是胜利!</p>
+      </div>
     </div>
-
-    <div class="progress">
-      <div class="progress-bar" id="progressBar"></div>
-    </div>
-
-    <div class="percent" id="percent">0%</div>
-
+    <div class="hero-star">💗</div>
   </div>
-
 
   <div class="card">
+    <div class="weight-grid">
+      <div class="metric">
+        <span>👜 今日体重</span>
+        <b><span id="todayWeight">60.0</span> <small>kg</small></b>
+      </div>
+      <div class="metric">
+        <span>🎯 目标体重</span>
+        <b>55.0 <small>kg</small></b>
+      </div>
+      <div class="metric">
+        <span>⬇️ 已减重</span>
+        <b>1.7 <small>kg</small></b>
+      </div>
+    </div>
 
-    <div class="title">📝 今日备注</div>
-
-    <textarea
-      id="note"
-      placeholder="今天感觉怎么样？想吃什么？运动了多久？"
-    ></textarea>
-
+    <div class="progress"><span></span></div>
+    <div class="progress-label">
+      <span>已减重 1.7 kg</span>
+      <span>还需 3.3 kg</span>
+    </div>
   </div>
 
-
   <div class="card">
-
-    <div class="title">🎯 今日任务</div>
+    <div class="title">⭐ 今日打卡 <span style="margin-left:auto;font-size:15px">💗 <span id="taskCount">0</span>/5</span></div>
 
     <div class="tasks">
-
-      <div class="task" data-index="0">
+      <div class="task" onclick="toggleTask(this)">
+        <div class="ico">🥗</div>
+        <div class="name">健康饮食</div>
         <div class="check"></div>
-        <div class="task-text">💧 今天喝够水</div>
       </div>
 
-      <div class="task" data-index="1">
+      <div class="task" onclick="toggleTask(this)">
+        <div class="ico">🏃‍♀️</div>
+        <div class="name">运动</div>
         <div class="check"></div>
-        <div class="task-text">🥗 今天控制饮食</div>
       </div>
 
-      <div class="task" data-index="2">
+      <div class="task" onclick="toggleTask(this)">
+        <div class="ico">🌙</div>
+        <div class="name">早睡</div>
+        <div class="sub">8/8 小时</div>
         <div class="check"></div>
-        <div class="task-text">🏃 今天完成运动</div>
       </div>
 
-      <div class="task" data-index="3">
+      <div class="task" onclick="toggleTask(this)">
+        <div class="ico">🧋</div>
+        <div class="name">奶茶</div>
         <div class="check"></div>
-        <div class="task-text">🌙 今天按时休息</div>
       </div>
 
+      <div class="task" onclick="toggleTask(this)">
+        <div class="ico">💧</div>
+        <div class="name">喝水</div>
+        <div class="sub">6/8 杯</div>
+        <div class="check"></div>
+      </div>
     </div>
-
   </div>
-
-
-  <button class="full-btn dark-btn" onclick="saveToday()">
-    💾 保存今日打卡
-  </button>
-
-</section>
-
-
-<!-- ==================== 第二页 ==================== -->
-
-<section id="page-record" class="page">
-
-  <div class="header">
-    <h1>📊 我的记录</h1>
-    <p>看看自己的坚持和变化</p>
-  </div>
-
 
   <div class="card">
-
-    <div class="title">📈 我的进度</div>
-
-    <div class="stats">
-
-      <div class="stat">
-        <div class="stat-label">连续打卡</div>
-        <div class="stat-value" id="streak">0</div>
+    <div class="complete-row">
+      <div class="circle"><span id="percent">0%</span></div>
+      <div>
+        <div class="title" style="margin:0 0 5px">今日完成度</div>
+        <div id="completeText">今天也要加油呀！✨</div>
       </div>
-
-      <div class="stat">
-        <div class="stat-label">今日完成</div>
-        <div class="stat-value" id="completed">0/4</div>
-      </div>
-
-      <div class="stat">
-        <div class="stat-label">体重变化</div>
-        <div class="stat-value" id="weightChange">--</div>
-      </div>
-
     </div>
-
   </div>
 
-
   <div class="card">
-
-    <div class="title">⚖️ 今日体重</div>
-
-    <div class="weight-row">
-
-      <input
-        id="weight"
-        type="number"
-        step="0.1"
-        inputmode="decimal"
-        placeholder="例如 65.5"
-      >
-
-      <button onclick="saveWeight()">
-        记录
-      </button>
-
+    <div class="title">🖍️ 今日备注</div>
+    <div class="note-row">
+      <textarea id="todayNote" placeholder="今天感觉怎么样？写点什么吧～"></textarea>
+      <div class="patrick">💗</div>
     </div>
-
-    <div class="tip">
-      体重数据只保存在你的手机浏览器中
-    </div>
-
   </div>
 
+  <div class="card">
+    <div class="title">📊 快速进度</div>
+    <div class="progress-label">
+      <span>体重 60.0kg</span>
+      <span>目标 55.0kg</span>
+    </div>
+    <div class="progress"><span></span></div>
+  </div>
 
   <div class="card">
-
-    <div class="title">📅 历史打卡</div>
-
-    <div id="history">
-      <div class="empty">还没有历史记录</div>
+    <div class="title">🏆 今日成就</div>
+    <div style="display:flex;align-items:center;gap:14px">
+      <div style="font-size:45px">⭐</div>
+      <div>
+        <b>第一天打卡</b>
+        <div class="small blue">好的开始，继续加油！</div>
+      </div>
     </div>
-
   </div>
 
 </section>
 
 
-<!-- ==================== 第三页：经期 ==================== -->
+<!-- ================= 第二页：身体 ================= -->
+<section class="page" id="bodyPage">
 
-<section id="page-period" class="page">
-
-  <div class="header">
-    <h1>🌸 经期管理</h1>
-    <p>记录自己的周期，更了解自己的身体</p>
+  <div class="card hero">
+    <div class="hero-row">
+      <div class="avatar">🌸</div>
+      <div>
+        <h1>我的身体 💕</h1>
+        <p>关爱自己，从了解身体开始</p>
+      </div>
+    </div>
+    <div class="hero-star">💗</div>
   </div>
 
-
-  <div class="card period-status">
-
-    <div class="period-icon">🌸</div>
-
-    <h2 id="periodStatus">
-      尚未记录
-    </h2>
-
-    <p id="periodMessage">
-      记录最近一次经期开始日期
-    </p>
-
-  </div>
-
-
+  <!-- 经期记录：固定在第二页 -->
   <div class="card">
-
-    <div class="title">🩸 经期设置</div>
-
-    <div class="form-group">
-
-      <label>
-        最近一次经期开始日期
-      </label>
-
-      <input
-        id="periodStart"
-        type="date"
-      >
-
+    <div class="title">
+      🌸 经期记录
+      <span style="margin-left:auto;font-size:13px;font-weight:500">更多 ›</span>
     </div>
-
-
-    <div class="form-group">
-
-      <label>
-        平均周期（天）
-      </label>
-
-      <input
-        id="cycleLength"
-        type="number"
-        min="20"
-        max="60"
-        value="28"
-        inputmode="numeric"
-      >
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label>
-        经期通常持续（天）
-      </label>
-
-      <input
-        id="periodDays"
-        type="number"
-        min="1"
-        max="15"
-        value="5"
-        inputmode="numeric"
-      >
-
-    </div>
-
-
-    <button
-      class="full-btn"
-      onclick="savePeriod()"
-    >
-      🌸 保存经期信息
-    </button>
-
-  </div>
-
-
-  <div class="card">
-
-    <div class="title">📆 周期信息</div>
 
     <div class="period-grid">
-
       <div class="period-box">
-        <div class="label">最近开始</div>
-        <div class="value" id="lastPeriod">
-          --
-        </div>
+        <div class="pi">🗓️</div>
+        <span>开始日期</span>
+        <b>8月28日</b>
       </div>
 
       <div class="period-box">
-        <div class="label">预计下次</div>
-        <div class="value" id="nextPeriod">
-          --
-        </div>
+        <div class="pi">🗓️</div>
+        <span>结束日期</span>
+        <b>9月2日</b>
       </div>
 
       <div class="period-box">
-        <div class="label">周期长度</div>
-        <div class="value" id="cycleDisplay">
-          -- 天
-        </div>
+        <div class="pi">♡</div>
+        <span>周期间隔</span>
+        <b>28 天</b>
       </div>
 
       <div class="period-box">
-        <div class="label">经期长度</div>
-        <div class="value" id="periodDisplay">
-          -- 天
-        </div>
+        <div class="pi">📋</div>
+        <span>下次预计</span>
+        <b>9月25日</b>
       </div>
-
     </div>
 
-    <div class="tip">
-      预计日期只是根据你填写的平均周期计算，
-      实际经期可能会提前或延后。
+    <div class="period-tip">
+      🥗　经期期间：健康饮食　让自己更舒服～ 💗
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="title">💗 身体状态</div>
+
+    <div class="status-grid">
+      <!-- 按确认稿：笑脸更大，并且位置更低 -->
+      <div class="status mood">
+        <div class="emoji">🙂</div>
+        <div class="sname">心情</div>
+        <div class="svalue">-</div>
+      </div>
+
+      <div class="status">
+        <div class="emoji">🥗</div>
+        <div class="sname">饮食</div>
+        <div class="svalue">健康饮食</div>
+        <div class="ok">✓</div>
+      </div>
+
+      <div class="status">
+        <div class="emoji">🌙</div>
+        <div class="sname">早睡</div>
+        <div class="svalue">8/8 小时</div>
+        <div class="ok">✓</div>
+      </div>
+
+      <div class="status">
+        <div class="emoji">💧</div>
+        <div class="sname">喝水</div>
+        <div class="svalue">6/8 杯</div>
+        <div class="ok">✓</div>
+      </div>
+
+      <div class="status">
+        <div class="emoji">🏃‍♀️</div>
+        <div class="sname">运动</div>
+        <div class="svalue">30 分钟</div>
+        <div class="ok">✓</div>
+      </div>
+
+      <div class="status">
+        <div class="emoji">🥗</div>
+        <div class="sname">健康饮食</div>
+        <div class="svalue">-</div>
+        <div class="ok">✓</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="title">🖍️ 身体备注</div>
+    <div class="note-row">
+      <div class="blue">
+        今天状态不错，继续加油！<br>
+        多喝水，保持好心情～
+      </div>
+      <div class="patrick">💗</div>
+    </div>
+  </div>
+
+  <div class="card banner">
+    <div style="font-size:40px">🥗</div>
+    <div class="pink">
+      <b>健康饮食</b><br>
+      让身体更轻盈！
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ================= 第三页：我的 ================= -->
+<section class="page" id="minePage">
+
+  <div class="card hero">
+    <div class="hero-row">
+      <div class="avatar">⭐</div>
+      <div>
+        <h1>我的 👑</h1>
+        <p>更好的自己，正在路上</p>
+      </div>
+    </div>
+    <div class="hero-star">💗</div>
+  </div>
+
+  <div class="card">
+    <div class="title">
+      🗓️ 我的体重
+      <span style="margin-left:auto;font-size:13px;font-weight:500">编辑 ›</span>
     </div>
 
+    <div class="weight-grid">
+      <div class="metric">
+        <span>起始体重</span>
+        <b>60.5 <small>kg</small></b>
+        <div class="small">8月1日</div>
+      </div>
+
+      <div class="metric">
+        <span>当前体重</span>
+        <b>60.0 <small>kg</small></b>
+        <div class="small">8月30日</div>
+      </div>
+
+      <div class="metric">
+        <span>目标体重</span>
+        <b>55 <small>kg</small></b>
+      </div>
+    </div>
+
+    <div class="progress"><span></span></div>
+    <div class="progress-label">
+      <span>已减重 1.7 kg</span>
+      <span>还需 3.3 kg</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="title">
+      🏆 我的成就
+      <span style="margin-left:auto;font-size:13px;font-weight:500">全部 ›</span>
+    </div>
+
+    <div class="achievements">
+      <div class="badge"><div class="bi">⭐</div><div>第一天打卡</div></div>
+      <div class="badge"><div class="bi">🔥</div><div>连续3天</div></div>
+      <div class="badge"><div class="bi">💧</div><div>喝水达人</div></div>
+      <div class="badge"><div class="bi">👑</div><div>坚持一周</div></div>
+      <div class="badge"><div class="bi">🏃‍♀️</div><div>运动达人</div></div>
+      <div class="badge"><div class="bi">🥗</div><div>健康饮食</div></div>
+      <div class="badge"><div class="bi">🌙</div><div>早睡达人</div></div>
+      <div class="badge"><div class="bi">🧋🚫</div><div>30天奶茶禁</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="title">
+      🗓️ 最近记录
+      <span style="margin-left:auto;font-size:13px;font-weight:500">全部 ›</span>
+    </div>
+
+    <div class="record">
+      <div class="dot"></div>
+      <div>8月30日</div>
+      <div>60.0kg</div>
+      <div>0/5</div>
+      <div>备注：加油！</div>
+    </div>
+
+    <div class="record">
+      <div class="dot"></div>
+      <div>8月29日</div>
+      <div>60.5kg</div>
+      <div>4/5</div>
+      <div>备注：状态不错</div>
+    </div>
+
+    <div class="record">
+      <div class="dot"></div>
+      <div>8月28日</div>
+      <div>61.0kg</div>
+      <div>3/5</div>
+      <div>备注：开始啦！</div>
+    </div>
+  </div>
+
+  <div class="card banner">
+    <div class="patrick">💗</div>
+    <div class="pink">
+      <b>你已经很棒了！</b><br>
+      继续加油，未来可期！
+    </div>
   </div>
 
 </section>
@@ -685,803 +717,96 @@ button:active{
 </div>
 
 
-<!-- ==================== 底部三页导航 ==================== -->
-
-<div class="nav">
-
-  <button
-    id="nav-home"
-    class="active"
-    onclick="showPage('home')"
-  >
-    <span class="nav-icon">🏠</span>
+<!-- 底部三页导航 -->
+<nav class="nav">
+  <button class="active" onclick="showPage('todayPage',this)">
+    <span class="ni">🏠</span>
     今日
   </button>
 
-  <button
-    id="nav-record"
-    onclick="showPage('record')"
-  >
-    <span class="nav-icon">📊</span>
-    记录
+  <button onclick="showPage('bodyPage',this)">
+    <span class="ni">♡</span>
+    身体
   </button>
 
-  <button
-    id="nav-period"
-    onclick="showPage('period')"
-  >
-    <span class="nav-icon">🌸</span>
-    经期
+  <button onclick="showPage('minePage',this)">
+    <span class="ni">👤</span>
+    我的
   </button>
-
-</div>
+</nav>
 
 
 <script>
+function showPage(id,btn){
+  document.querySelectorAll('.page').forEach(function(page){
+    page.classList.remove('active');
+  });
 
-/* =========================
-   数据
-========================= */
+  document.getElementById(id).classList.add('active');
 
-const STORAGE_KEY = "cuicui_final_v3";
+  document.querySelectorAll('.nav button').forEach(function(button){
+    button.classList.remove('active');
+  });
 
-let data = JSON.parse(
-  localStorage.getItem(STORAGE_KEY) || "{}"
-);
-
-if(!data.history){
-  data.history = {};
+  btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
-if(!data.weights){
-  data.weights = [];
+function toggleTask(el){
+  el.classList.toggle('done');
+  updateProgress();
+  saveData();
 }
 
-if(!data.period){
-  data.period = {
-    start:"",
-    cycle:28,
-    days:5
-  };
-}
+function updateProgress(){
+  var done=document.querySelectorAll('#todayPage .task.done').length;
+  var total=document.querySelectorAll('#todayPage .task').length;
+  var percent=Math.round(done/total*100);
 
+  document.getElementById('taskCount').textContent=done;
+  document.getElementById('percent').textContent=percent+'%';
 
-/* =========================
-   日期
-========================= */
-
-function todayKey(){
-
-  const d = new Date();
-
-  const y = d.getFullYear();
-
-  const m = String(
-    d.getMonth()+1
-  ).padStart(2,"0");
-
-  const day = String(
-    d.getDate()
-  ).padStart(2,"0");
-
-  return `${y}-${m}-${day}`;
-}
-
-
-function dateText(date){
-
-  const d = new Date(date + "T00:00:00");
-
-  if(isNaN(d)){
-    return "--";
+  if(percent===100){
+    document.getElementById('completeText').textContent='太棒了！今天你已经很棒！✨';
+  }else if(percent>=60){
+    document.getElementById('completeText').textContent='完成大半啦，继续加油！💗';
+  }else{
+    document.getElementById('completeText').textContent='今天也要加油呀！✨';
   }
-
-  return (
-    d.getFullYear() +
-    "/" +
-    String(d.getMonth()+1).padStart(2,"0") +
-    "/" +
-    String(d.getDate()).padStart(2,"0")
-  );
 }
-
-
-/* =========================
-   今日数据
-========================= */
-
-const today = todayKey();
-
-if(!data.history[today]){
-
-  data.history[today] = {
-
-    tasks:[
-      false,
-      false,
-      false,
-      false
-    ],
-
-    note:"",
-
-    weight:null
-  };
-}
-
-let todayData =
-  data.history[today];
-
-
-/* =========================
-   保存
-========================= */
 
 function saveData(){
+  var states=[];
+  document.querySelectorAll('#todayPage .task').forEach(function(task){
+    states.push(task.classList.contains('done'));
+  });
 
+  localStorage.setItem('cuicuiTasks',JSON.stringify(states));
   localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(data)
+    'cuicuiNote',
+    document.getElementById('todayNote').value
   );
 }
 
+function loadData(){
+  try{
+    var states=JSON.parse(localStorage.getItem('cuicuiTasks')||'[]');
 
-/* =========================
-   三页切换
-========================= */
-
-function showPage(page){
-
-  document
-    .querySelectorAll(".page")
-    .forEach(el=>{
-      el.classList.remove("active");
+    document.querySelectorAll('#todayPage .task').forEach(function(task,index){
+      if(states[index]) task.classList.add('done');
     });
 
-  document
-    .getElementById("page-"+page)
-    .classList.add("active");
+    document.getElementById('todayNote').value=
+      localStorage.getItem('cuicuiNote')||'';
 
+  }catch(e){}
 
-  document
-    .querySelectorAll(".nav button")
-    .forEach(el=>{
-      el.classList.remove("active");
-    });
-
-  document
-    .getElementById("nav-"+page)
-    .classList.add("active");
-
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
-  updateUI();
+  updateProgress();
 }
 
+document.getElementById('todayNote').addEventListener('input',saveData);
 
-/* =========================
-   首页任务
-========================= */
-
-document
-  .querySelectorAll(".task")
-  .forEach(task=>{
-
-    task.addEventListener("click",()=>{
-
-      const index =
-        Number(task.dataset.index);
-
-      todayData.tasks[index] =
-        !todayData.tasks[index];
-
-      saveData();
-
-      updateUI();
-
-    });
-
-  });
-
-
-/* =========================
-   备注
-========================= */
-
-document
-  .getElementById("note")
-  .addEventListener("input",e=>{
-
-    todayData.note =
-      e.target.value;
-
-    saveData();
-
-  });
-
-
-/* =========================
-   更新页面
-========================= */
-
-function updateUI(){
-
-  document.getElementById("note").value =
-    todayData.note || "";
-
-
-  document.getElementById("weight").value =
-    todayData.weight || "";
-
-
-  let completed = 0;
-
-  document
-    .querySelectorAll(".task")
-    .forEach((task,i)=>{
-
-      const check =
-        task.querySelector(".check");
-
-      if(todayData.tasks[i]){
-
-        task.classList.add("done");
-
-        check.textContent = "✓";
-
-        completed++;
-
-      }else{
-
-        task.classList.remove("done");
-
-        check.textContent = "";
-
-      }
-
-    });
-
-
-  const percent =
-    Math.round(completed / 4 * 100);
-
-
-  document.getElementById(
-    "completed"
-  ).textContent =
-    completed + "/4";
-
-
-  document.getElementById(
-    "percent"
-  ).textContent =
-    percent + "%";
-
-
-  document.getElementById(
-    "progressBar"
-  ).style.width =
-    percent + "%";
-
-
-  document.getElementById(
-    "streak"
-  ).textContent =
-    calculateStreak();
-
-
-  updateWeightChange();
-
-  renderHistory();
-
-  renderPeriod();
-
-}
-
-
-/* =========================
-   保存今日
-========================= */
-
-function saveToday(){
-
-  todayData.note =
-    document.getElementById("note").value;
-
-  const weight =
-    parseFloat(
-      document.getElementById("weight").value
-    );
-
-  if(!isNaN(weight) && weight > 0){
-
-    todayData.weight = weight;
-
-    updateWeightRecord(weight);
-  }
-
-  saveData();
-
-  updateUI();
-
-  alert("🎉 今日打卡已保存！");
-}
-
-
-/* =========================
-   体重
-========================= */
-
-function updateWeightRecord(weight){
-
-  const index =
-    data.weights.findIndex(
-      x=>x.date===today
-    );
-
-  if(index >= 0){
-
-    data.weights[index].weight =
-      weight;
-
-  }else{
-
-    data.weights.push({
-      date:today,
-      weight:weight
-    });
-
-  }
-}
-
-
-function saveWeight(){
-
-  const value =
-    parseFloat(
-      document.getElementById("weight").value
-    );
-
-  if(isNaN(value) || value <= 0){
-
-    alert("请输入正确的体重");
-
-    return;
-  }
-
-  todayData.weight = value;
-
-  updateWeightRecord(value);
-
-  saveData();
-
-  updateUI();
-
-  alert("⚖️ 今日体重已记录");
-}
-
-
-/* =========================
-   体重变化
-========================= */
-
-function updateWeightChange(){
-
-  const weights =
-    [...data.weights]
-    .sort((a,b)=>
-      a.date.localeCompare(b.date)
-    );
-
-  const el =
-    document.getElementById(
-      "weightChange"
-    );
-
-  if(weights.length < 2){
-
-    el.textContent = "--";
-
-    return;
-  }
-
-  const first =
-    weights[0].weight;
-
-  const latest =
-    weights[weights.length-1].weight;
-
-  const diff =
-    latest - first;
-
-  if(diff > 0){
-
-    el.textContent =
-      "+" + diff.toFixed(1);
-
-  }else{
-
-    el.textContent =
-      diff.toFixed(1);
-
-  }
-}
-
-
-/* =========================
-   连续打卡
-========================= */
-
-function calculateStreak(){
-
-  let streak = 0;
-
-  let d = new Date();
-
-  while(true){
-
-    const key =
-      d.getFullYear() +
-      "-" +
-      String(d.getMonth()+1).padStart(2,"0") +
-      "-" +
-      String(d.getDate()).padStart(2,"0");
-
-    const record =
-      data.history[key];
-
-    if(!record){
-      break;
-    }
-
-    if(
-      !record.tasks ||
-      !record.tasks.every(Boolean)
-    ){
-      break;
-    }
-
-    streak++;
-
-    d.setDate(
-      d.getDate()-1
-    );
-
-  }
-
-  return streak;
-}
-
-
-/* =========================
-   历史
-========================= */
-
-function renderHistory(){
-
-  const box =
-    document.getElementById(
-      "history"
-    );
-
-  const records =
-    Object.entries(data.history)
-    .sort((a,b)=>
-      b[0].localeCompare(a[0])
-    );
-
-  if(records.length===0){
-
-    box.innerHTML =
-      '<div class="empty">还没有历史记录</div>';
-
-    return;
-  }
-
-  box.innerHTML = "";
-
-  records.forEach(
-    ([date,record])=>{
-
-      const count =
-        record.tasks
-        ? record.tasks.filter(Boolean).length
-        : 0;
-
-      const note =
-        record.note || "没有备注";
-
-      const weight =
-        record.weight
-        ? "体重：" + record.weight + " kg"
-        : "未记录体重";
-
-      const item =
-        document.createElement("div");
-
-      item.className =
-        "history-item";
-
-      item.innerHTML = `
-
-        <div class="history-date">
-          ${dateText(date)}
-        </div>
-
-        <div class="history-detail">
-          完成任务：${count}/4<br>
-          ${weight}<br>
-          备注：${escapeHTML(note)}
-        </div>
-
-      `;
-
-      box.appendChild(item);
-
-    }
-  );
-}
-
-
-/* 防止备注里的 HTML 影响页面 */
-
-function escapeHTML(text){
-
-  return String(text)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-}
-
-
-/* =========================
-   经期
-========================= */
-
-function savePeriod(){
-
-  const start =
-    document.getElementById(
-      "periodStart"
-    ).value;
-
-  const cycle =
-    parseInt(
-      document.getElementById(
-        "cycleLength"
-      ).value
-    );
-
-  const days =
-    parseInt(
-      document.getElementById(
-        "periodDays"
-      ).value
-    );
-
-  if(!start){
-
-    alert("请选择最近一次经期开始日期");
-
-    return;
-  }
-
-  if(
-    isNaN(cycle) ||
-    cycle < 20 ||
-    cycle > 60
-  ){
-
-    alert("请输入正确的周期天数");
-
-    return;
-  }
-
-  if(
-    isNaN(days) ||
-    days < 1 ||
-    days > 15
-  ){
-
-    alert("请输入正确的经期天数");
-
-    return;
-  }
-
-  data.period = {
-
-    start:start,
-
-    cycle:cycle,
-
-    days:days
-
-  };
-
-  saveData();
-
-  renderPeriod();
-
-  alert("🌸 经期信息已保存");
-}
-
-
-/* =========================
-   经期显示
-========================= */
-
-function renderPeriod(){
-
-  const p =
-    data.period;
-
-  document.getElementById(
-    "periodStart"
-  ).value =
-    p.start || "";
-
-  document.getElementById(
-    "cycleLength"
-  ).value =
-    p.cycle || 28;
-
-  document.getElementById(
-    "periodDays"
-  ).value =
-    p.days || 5;
-
-
-  if(!p.start){
-
-    document.getElementById(
-      "periodStatus"
-    ).textContent =
-      "尚未记录";
-
-    document.getElementById(
-      "periodMessage"
-    ).textContent =
-      "记录最近一次经期开始日期";
-
-    document.getElementById(
-      "lastPeriod"
-    ).textContent =
-      "--";
-
-    document.getElementById(
-      "nextPeriod"
-    ).textContent =
-      "--";
-
-    document.getElementById(
-      "cycleDisplay"
-    ).textContent =
-      "-- 天";
-
-    document.getElementById(
-      "periodDisplay"
-    ).textContent =
-      "-- 天";
-
-    return;
-  }
-
-
-  const start =
-    new Date(
-      p.start + "T00:00:00"
-    );
-
-  const next =
-    new Date(start);
-
-  next.setDate(
-    next.getDate() + Number(p.cycle)
-  );
-
-
-  document.getElementById(
-    "lastPeriod"
-  ).textContent =
-    dateText(p.start);
-
-
-  document.getElementById(
-    "nextPeriod"
-  ).textContent =
-    formatDateObject(next);
-
-
-  document.getElementById(
-    "cycleDisplay"
-  ).textContent =
-    p.cycle + " 天";
-
-
-  document.getElementById(
-    "periodDisplay"
-  ).textContent =
-    p.days + " 天";
-
-
-  const now =
-    new Date();
-
-  const diff =
-    Math.floor(
-      (now - start) /
-      86400000
-    );
-
-  let status =
-    "距离下次经期还有一段时间";
-
-  if(diff >= 0){
-
-    const cycleDay =
-      (diff % Number(p.cycle)) + 1;
-
-    if(
-      cycleDay <= Number(p.days)
-    ){
-
-      status = "🌸 可能处于经期";
-
-    }else{
-
-      const daysLeft =
-        Number(p.cycle) - cycleDay + 1;
-
-      status =
-        "预计还有 " +
-        daysLeft +
-        " 天左右";
-    }
-  }
-
-
-  document.getElementById(
-    "periodStatus"
-  ).textContent =
-    status;
-
-  document.getElementById(
-    "periodMessage"
-  ).textContent =
-    "预计下次：" +
-    formatDateObject(next);
-
-}
-
-
-/* =========================
-   日期格式
-========================= */
-
-function formatDateObject(d){
-
-  return (
-    d.getFullYear() +
-    "/" +
-    String(d.getMonth()+1).padStart(2,"0") +
-    "/" +
-    String(d.getDate()).padStart(2,"0")
-  );
-}
-
-
-/* =========================
-   启动
-========================= */
-
-updateUI();
-
+loadData();
 </script>
 
 </body>
