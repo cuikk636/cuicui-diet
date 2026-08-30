@@ -128,11 +128,20 @@ body{overflow:hidden}
 }
 
 .all-records-modal .record-item{
-  background:#fff8fb;
-  border:1px solid #f4c6da;
-  border-radius:16px;
-  padding:14px;
-  margin:10px 0;
+  background:linear-gradient(135deg,#fff8fb,#fff0f6);
+  border:1.5px solid #f4b6d2;
+  border-radius:18px;
+  padding:16px 18px;
+  margin:12px 0;
+  line-height:1.8;
+  box-shadow:0 5px 14px rgba(220,90,150,.12);
+}
+
+.all-records-modal .record-date{
+  color:#9b285d;
+  font-size:18px;
+  font-weight:800;
+  margin-bottom:5px;
 }
 
 .all-records-close{
@@ -1427,11 +1436,14 @@ function showAllRecords(){
     const tasks = r.tasks || {};
     const done = Object.values(tasks).filter(Boolean).length;
 
-    text +=
-      "💗 " + date + "\n" +
-      "⚖️ 体重：" + (r.weight || "--") + " kg\n" +
-      "⭐ 完成：" + done + "/5\n" +
-      "📝 备注：" + (r.note || "无") + "\n\n";
+    text += `
+  <div class="record-item">
+    <div class="record-date">💗 ${date}</div>
+    <div>⚖️ 体重：${r.weight || "--"} kg</div>
+    <div>⭐ 完成：${done}/5</div>
+    <div>📝 备注：${r.note || "无"}</div>
+  </div>
+`;
   });
 
   showRecordsModal(text);
@@ -1462,7 +1474,7 @@ function showAllRecords(){
     document.body.appendChild(modal);
   }
 
-  document.getElementById("allRecordsContent").textContent = text;
+  document.getElementById("allRecordsContent").innerHTML = text;
   modal.style.display = "flex";
 }
 
