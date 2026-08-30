@@ -1322,7 +1322,7 @@ if(!dayStore[TODAY]){
     }
   };
 }
-
+localStorage.setItem(DAYS_KEY, JSON.stringify(dayStore));
 /* 今天自动读取今天自己的数据 */
 s.todayWeight = Number(dayStore[TODAY].weight ?? s.todayWeight);
 s.note = dayStore[TODAY].note || "";
