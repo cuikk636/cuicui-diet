@@ -470,10 +470,12 @@ body{overflow:hidden}
 
 <section class="card">
 
-  <div class="card-title">
-    <h2>📅 最近记录</h2>
-    <span class="more">全部 ›</span>
-  </div>
+<div class="card-title">
+  <h2>📅 最近记录</h2>
+  <span class="more" onclick="showAllRecords()">全部 ›</span>
+</div>  
+       
+  
 
   <div class="records" id="records"></div>
 
@@ -1372,10 +1374,14 @@ function save(){
     JSON.stringify(s)
   );
 }
+function showAllRecords(){
+  alert("全部记录功能已打开");
+}
 
 rebuildRecords();
 render();
 </script>
+
 
 </body>
 </html>
