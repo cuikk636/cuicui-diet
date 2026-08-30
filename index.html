@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#ffdce9">
+<meta name="theme-color" content="#ffd9e7">
+
 <title>🌷 崔崔的减肥打卡</title>
 
 <style>
@@ -14,8 +15,8 @@
 
 body{
   margin:0;
-  padding:20px 16px 100px;
-  background:#f5f7fb;
+  padding:18px 14px 100px;
+  background:#f7f7fa;
   color:#222;
   font-family:-apple-system,BlinkMacSystemFont,
   "Helvetica Neue",Arial,sans-serif;
@@ -26,88 +27,79 @@ body{
   margin:auto;
 }
 
-.hero,.card{
-  background:#fff;
-  border:2px solid #f3bfd2;
-  border-radius:25px;
-  box-shadow:0 7px 22px #d9c9d818;
-  margin-bottom:18px;
+/* 页面 */
+.page{
+  display:none;
 }
 
-.hero{
-  padding:25px 20px;
+.page.active{
+  display:block;
+}
+
+/* 顶部 */
+.header{
   text-align:center;
-  background:linear-gradient(135deg,#fff,#fff6fa);
+  padding:10px 8px 18px;
 }
 
-.hero h1{
-  margin:0 0 8px;
-  font-size:30px;
-}
-
-.hero p{
+.header h1{
   margin:0;
-  color:#9b6d7e;
+  font-size:29px;
+}
+
+.header p{
+  margin:8px 0 0;
+  color:#9b7181;
   font-size:15px;
 }
 
+/* 卡片 */
+.card{
+  background:#fff;
+  border:2px solid #f0c4d5;
+  border-radius:24px;
+  padding:21px 17px;
+  margin-bottom:16px;
+  box-shadow:0 5px 18px rgba(180,120,145,.08);
+}
+
+.title{
+  font-size:23px;
+  font-weight:800;
+  margin-bottom:17px;
+}
+
+/* 首页进度 */
+.progress-box{
+  text-align:center;
+  padding:20px;
+  background:linear-gradient(135deg,#fff,#fff5f9);
+}
+
 .progress{
-  height:14px;
-  background:#f4e5eb;
+  height:15px;
+  background:#f2e3e9;
   border-radius:20px;
-  margin-top:20px;
   overflow:hidden;
+  margin-top:17px;
 }
 
 .progress-bar{
   height:100%;
   width:0%;
-  background:linear-gradient(90deg,#e99ab7,#c97898);
+  background:linear-gradient(90deg,#e89bb7,#c87999);
   border-radius:20px;
   transition:.3s;
 }
 
 .percent{
-  margin-top:8px;
-  color:#b17b8d;
+  margin-top:9px;
+  color:#a66d82;
   font-weight:bold;
+  font-size:19px;
 }
 
-.card{
-  padding:22px 18px;
-}
-
-.title{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  font-size:24px;
-  font-weight:800;
-  margin-bottom:18px;
-}
-
-textarea{
-  width:100%;
-  min-height:150px;
-  resize:none;
-  border:2px solid #ead1dc;
-  border-radius:20px;
-  padding:18px;
-  font-size:17px;
-  outline:none;
-  color:#333;
-  background:#fff;
-}
-
-textarea:focus,
-input:focus{
-  border-color:#d995ae;
-}
-
-textarea::placeholder{
-  color:#b8b8b8;
-}
-
+/* 任务 */
 .tasks{
   display:grid;
   gap:12px;
@@ -118,25 +110,24 @@ textarea::placeholder{
   align-items:center;
   gap:12px;
   padding:16px;
+  border:1px solid #efdce4;
   border-radius:18px;
-  background:#fff7fa;
-  border:1px solid #f0dce4;
-  cursor:pointer;
+  background:#fff8fa;
 }
 
 .task.done{
-  background:#f7e5ec;
+  background:#f9e7ef;
 }
 
 .check{
-  width:28px;
-  height:28px;
-  border:2px solid #d59aae;
+  width:29px;
+  height:29px;
+  border:2px solid #d39aae;
   border-radius:50%;
-  flex-shrink:0;
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
+  flex-shrink:0;
   color:white;
   font-weight:bold;
 }
@@ -150,84 +141,113 @@ textarea::placeholder{
   flex:1;
 }
 
+/* 输入 */
+textarea,
+input{
+  width:100%;
+  border:2px solid #ead2dc;
+  border-radius:17px;
+  padding:15px;
+  font-size:16px;
+  outline:none;
+  background:#fff;
+}
+
+textarea{
+  min-height:145px;
+  resize:none;
+}
+
+textarea:focus,
+input:focus{
+  border-color:#d595ae;
+}
+
+/* 统计 */
 .stats{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:12px;
+  gap:9px;
 }
 
 .stat{
   background:#fff7fa;
-  border-radius:20px;
-  padding:18px 8px;
+  border-radius:18px;
+  padding:15px 5px;
   text-align:center;
 }
 
 .stat-label{
-  color:#9e7180;
-  font-size:15px;
-  margin-bottom:8px;
+  color:#9d7180;
+  font-size:13px;
 }
 
 .stat-value{
-  font-size:27px;
+  margin-top:7px;
+  font-size:23px;
   font-weight:800;
 }
 
-.weight-box{
-  display:flex;
-  gap:10px;
-}
-
-input{
-  flex:1;
-  min-width:0;
-  padding:15px;
-  border:2px solid #ead1dc;
-  border-radius:15px;
-  font-size:17px;
-  outline:none;
-}
-
+/* 按钮 */
 button{
   border:0;
-  border-radius:15px;
-  padding:15px 20px;
+  border-radius:16px;
+  padding:14px 18px;
+  background:#d78fa8;
+  color:white;
   font-size:16px;
   font-weight:bold;
-  background:#d78fa9;
-  color:white;
 }
 
 button:active{
   transform:scale(.97);
 }
 
-.save{
+.full-btn{
   width:100%;
-  margin-top:15px;
-  background:#222;
-  font-size:20px;
-  padding:18px;
+  margin-top:12px;
+  font-size:18px;
+  padding:17px;
 }
 
+.dark-btn{
+  background:#292929;
+}
+
+/* 体重 */
+.weight-row{
+  display:flex;
+  gap:9px;
+}
+
+.weight-row input{
+  flex:1;
+  min-width:0;
+}
+
+.weight-row button{
+  flex-shrink:0;
+}
+
+/* 历史 */
 .history-item{
-  padding:15px;
-  margin-bottom:10px;
-  border-radius:16px;
   background:#fff7fa;
   border:1px solid #f0dce4;
+  border-radius:17px;
+  padding:15px;
+  margin-bottom:10px;
 }
 
 .history-date{
   font-weight:bold;
-  color:#875c6c;
+  color:#875d6d;
 }
 
 .history-detail{
-  margin-top:5px;
+  margin-top:7px;
   color:#777;
   font-size:14px;
+  line-height:1.6;
 }
 
 .empty{
@@ -236,29 +256,139 @@ button:active{
   padding:15px;
 }
 
-.small{
-  color:#9d7180;
+/* 经期 */
+.period-status{
+  text-align:center;
+  padding:20px;
+  border-radius:20px;
+  background:linear-gradient(135deg,#fff2f7,#fff);
+}
+
+.period-icon{
+  font-size:48px;
+}
+
+.period-status h2{
+  margin:8px 0;
+  font-size:23px;
+}
+
+.period-status p{
+  margin:5px 0;
+  color:#986e7e;
+}
+
+.form-group{
+  margin-bottom:15px;
+}
+
+.form-group label{
+  display:block;
+  margin-bottom:8px;
+  font-weight:bold;
+  color:#654c56;
+}
+
+.form-group input{
+  width:100%;
+}
+
+/* 经期数据 */
+.period-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+
+.period-box{
+  background:#fff7fa;
+  border-radius:18px;
+  padding:17px 10px;
+  text-align:center;
+}
+
+.period-box .label{
+  font-size:13px;
+  color:#9c7180;
+}
+
+.period-box .value{
+  margin-top:7px;
+  font-size:21px;
+  font-weight:800;
+}
+
+/* 底部导航 */
+.nav{
+  position:fixed;
+  left:50%;
+  bottom:10px;
+  transform:translateX(-50%);
+  width:calc(100% - 22px);
+  max-width:700px;
+  background:rgba(255,255,255,.96);
+  border:1px solid #e5d5dc;
+  border-radius:22px;
+  padding:7px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:5px;
+  box-shadow:0 8px 30px rgba(0,0,0,.12);
+  z-index:100;
+}
+
+.nav button{
+  background:transparent;
+  color:#888;
+  padding:10px 4px;
+  font-size:13px;
+}
+
+.nav button.active{
+  background:#f7dce6;
+  color:#7f5264;
+}
+
+.nav-icon{
+  display:block;
+  font-size:21px;
+  margin-bottom:2px;
+}
+
+/* 小提示 */
+.tip{
+  color:#999;
   text-align:center;
   font-size:13px;
   margin-top:10px;
+  line-height:1.5;
 }
 
-@media(max-width:500px){
+@media(max-width:430px){
+
   body{
-    padding-left:12px;
-    padding-right:12px;
+    padding-left:11px;
+    padding-right:11px;
+  }
+
+  .header h1{
+    font-size:27px;
+  }
+
+  .title{
+    font-size:21px;
   }
 
   .stats{
-    gap:8px;
-  }
-
-  .stat{
-    padding:15px 5px;
+    gap:7px;
   }
 
   .stat-value{
-    font-size:24px;
+    font-size:21px;
+  }
+
+  .task-text{
+    font-size:16px;
   }
 }
 </style>
@@ -268,27 +398,44 @@ button:active{
 
 <div class="app">
 
-  <section class="hero">
+<!-- ==================== 第一页 ==================== -->
+
+<section id="page-home" class="page active">
+
+  <div class="header">
     <h1>🌷 崔崔的减肥打卡</h1>
     <p>每天进步一点点，坚持就是胜利</p>
+  </div>
+
+  <div class="card progress-box">
+
+    <div style="font-size:18px;font-weight:bold;">
+      今日完成进度
+    </div>
 
     <div class="progress">
       <div class="progress-bar" id="progressBar"></div>
     </div>
 
     <div class="percent" id="percent">0%</div>
-  </section>
+
+  </div>
 
 
-  <section class="card">
+  <div class="card">
+
     <div class="title">📝 今日备注</div>
 
-    <textarea id="note"
-      placeholder="今天感觉怎么样？想吃什么？运动了多久？"></textarea>
-  </section>
+    <textarea
+      id="note"
+      placeholder="今天感觉怎么样？想吃什么？运动了多久？"
+    ></textarea>
+
+  </div>
 
 
-  <section class="card">
+  <div class="card">
+
     <div class="title">🎯 今日任务</div>
 
     <div class="tasks">
@@ -314,11 +461,30 @@ button:active{
       </div>
 
     </div>
-  </section>
+
+  </div>
 
 
-  <section class="card">
-    <div class="title">📊 我的进度</div>
+  <button class="full-btn dark-btn" onclick="saveToday()">
+    💾 保存今日打卡
+  </button>
+
+</section>
+
+
+<!-- ==================== 第二页 ==================== -->
+
+<section id="page-record" class="page">
+
+  <div class="header">
+    <h1>📊 我的记录</h1>
+    <p>看看自己的坚持和变化</p>
+  </div>
+
+
+  <div class="card">
+
+    <div class="title">📈 我的进度</div>
 
     <div class="stats">
 
@@ -338,47 +504,226 @@ button:active{
       </div>
 
     </div>
-  </section>
+
+  </div>
 
 
-  <section class="card">
+  <div class="card">
+
     <div class="title">⚖️ 今日体重</div>
 
-    <div class="weight-box">
+    <div class="weight-row">
+
       <input
         id="weight"
         type="number"
         step="0.1"
         inputmode="decimal"
-        placeholder="例如 65.5 kg">
-      <button onclick="saveWeight()">记录</button>
+        placeholder="例如 65.5"
+      >
+
+      <button onclick="saveWeight()">
+        记录
+      </button>
+
     </div>
 
-    <div class="small">
-      体重会保存在你的手机浏览器中
+    <div class="tip">
+      体重数据只保存在你的手机浏览器中
     </div>
-  </section>
+
+  </div>
 
 
-  <button class="save" onclick="saveToday()">
-    💾 保存今日打卡
-  </button>
+  <div class="card">
 
-
-  <section class="card">
     <div class="title">📅 历史打卡</div>
 
     <div id="history">
       <div class="empty">还没有历史记录</div>
     </div>
-  </section>
+
+  </div>
+
+</section>
+
+
+<!-- ==================== 第三页：经期 ==================== -->
+
+<section id="page-period" class="page">
+
+  <div class="header">
+    <h1>🌸 经期管理</h1>
+    <p>记录自己的周期，更了解自己的身体</p>
+  </div>
+
+
+  <div class="card period-status">
+
+    <div class="period-icon">🌸</div>
+
+    <h2 id="periodStatus">
+      尚未记录
+    </h2>
+
+    <p id="periodMessage">
+      记录最近一次经期开始日期
+    </p>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="title">🩸 经期设置</div>
+
+    <div class="form-group">
+
+      <label>
+        最近一次经期开始日期
+      </label>
+
+      <input
+        id="periodStart"
+        type="date"
+      >
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        平均周期（天）
+      </label>
+
+      <input
+        id="cycleLength"
+        type="number"
+        min="20"
+        max="60"
+        value="28"
+        inputmode="numeric"
+      >
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        经期通常持续（天）
+      </label>
+
+      <input
+        id="periodDays"
+        type="number"
+        min="1"
+        max="15"
+        value="5"
+        inputmode="numeric"
+      >
+
+    </div>
+
+
+    <button
+      class="full-btn"
+      onclick="savePeriod()"
+    >
+      🌸 保存经期信息
+    </button>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="title">📆 周期信息</div>
+
+    <div class="period-grid">
+
+      <div class="period-box">
+        <div class="label">最近开始</div>
+        <div class="value" id="lastPeriod">
+          --
+        </div>
+      </div>
+
+      <div class="period-box">
+        <div class="label">预计下次</div>
+        <div class="value" id="nextPeriod">
+          --
+        </div>
+      </div>
+
+      <div class="period-box">
+        <div class="label">周期长度</div>
+        <div class="value" id="cycleDisplay">
+          -- 天
+        </div>
+      </div>
+
+      <div class="period-box">
+        <div class="label">经期长度</div>
+        <div class="value" id="periodDisplay">
+          -- 天
+        </div>
+      </div>
+
+    </div>
+
+    <div class="tip">
+      预计日期只是根据你填写的平均周期计算，
+      实际经期可能会提前或延后。
+    </div>
+
+  </div>
+
+</section>
+
+</div>
+
+
+<!-- ==================== 底部三页导航 ==================== -->
+
+<div class="nav">
+
+  <button
+    id="nav-home"
+    class="active"
+    onclick="showPage('home')"
+  >
+    <span class="nav-icon">🏠</span>
+    今日
+  </button>
+
+  <button
+    id="nav-record"
+    onclick="showPage('record')"
+  >
+    <span class="nav-icon">📊</span>
+    记录
+  </button>
+
+  <button
+    id="nav-period"
+    onclick="showPage('period')"
+  >
+    <span class="nav-icon">🌸</span>
+    经期
+  </button>
 
 </div>
 
 
 <script>
 
-const STORAGE_KEY = "cuicui_diet_data";
+/* =========================
+   数据
+========================= */
+
+const STORAGE_KEY = "cuicui_final_v3";
 
 let data = JSON.parse(
   localStorage.getItem(STORAGE_KEY) || "{}"
@@ -392,121 +737,306 @@ if(!data.weights){
   data.weights = [];
 }
 
-let today = getToday();
-
-if(!data.history[today]){
-  data.history[today] = {
-    tasks:[false,false,false,false],
-    note:"",
-    weight:null
+if(!data.period){
+  data.period = {
+    start:"",
+    cycle:28,
+    days:5
   };
 }
 
-let todayData = data.history[today];
 
+/* =========================
+   日期
+========================= */
 
-function getToday(){
+function todayKey(){
 
   const d = new Date();
 
   const y = d.getFullYear();
 
-  const m = String(d.getMonth()+1).padStart(2,"0");
+  const m = String(
+    d.getMonth()+1
+  ).padStart(2,"0");
 
-  const day = String(d.getDate()).padStart(2,"0");
+  const day = String(
+    d.getDate()
+  ).padStart(2,"0");
 
   return `${y}-${m}-${day}`;
 }
 
+
+function dateText(date){
+
+  const d = new Date(date + "T00:00:00");
+
+  if(isNaN(d)){
+    return "--";
+  }
+
+  return (
+    d.getFullYear() +
+    "/" +
+    String(d.getMonth()+1).padStart(2,"0") +
+    "/" +
+    String(d.getDate()).padStart(2,"0")
+  );
+}
+
+
+/* =========================
+   今日数据
+========================= */
+
+const today = todayKey();
+
+if(!data.history[today]){
+
+  data.history[today] = {
+
+    tasks:[
+      false,
+      false,
+      false,
+      false
+    ],
+
+    note:"",
+
+    weight:null
+  };
+}
+
+let todayData =
+  data.history[today];
+
+
+/* =========================
+   保存
+========================= */
+
+function saveData(){
+
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(data)
+  );
+}
+
+
+/* =========================
+   三页切换
+========================= */
+
+function showPage(page){
+
+  document
+    .querySelectorAll(".page")
+    .forEach(el=>{
+      el.classList.remove("active");
+    });
+
+  document
+    .getElementById("page-"+page)
+    .classList.add("active");
+
+
+  document
+    .querySelectorAll(".nav button")
+    .forEach(el=>{
+      el.classList.remove("active");
+    });
+
+  document
+    .getElementById("nav-"+page)
+    .classList.add("active");
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+  updateUI();
+}
+
+
+/* =========================
+   首页任务
+========================= */
+
+document
+  .querySelectorAll(".task")
+  .forEach(task=>{
+
+    task.addEventListener("click",()=>{
+
+      const index =
+        Number(task.dataset.index);
+
+      todayData.tasks[index] =
+        !todayData.tasks[index];
+
+      saveData();
+
+      updateUI();
+
+    });
+
+  });
+
+
+/* =========================
+   备注
+========================= */
+
+document
+  .getElementById("note")
+  .addEventListener("input",e=>{
+
+    todayData.note =
+      e.target.value;
+
+    saveData();
+
+  });
+
+
+/* =========================
+   更新页面
+========================= */
 
 function updateUI(){
 
   document.getElementById("note").value =
     todayData.note || "";
 
+
   document.getElementById("weight").value =
     todayData.weight || "";
 
-  const tasks =
-    document.querySelectorAll(".task");
 
   let completed = 0;
 
-  tasks.forEach((task,i)=>{
+  document
+    .querySelectorAll(".task")
+    .forEach((task,i)=>{
 
-    const check =
-      task.querySelector(".check");
+      const check =
+        task.querySelector(".check");
 
-    if(todayData.tasks[i]){
+      if(todayData.tasks[i]){
 
-      task.classList.add("done");
+        task.classList.add("done");
 
-      check.textContent = "✓";
+        check.textContent = "✓";
 
-      completed++;
+        completed++;
 
-    }else{
+      }else{
 
-      task.classList.remove("done");
+        task.classList.remove("done");
 
-      check.textContent = "";
+        check.textContent = "";
 
-    }
+      }
 
-  });
-
-
-  document.getElementById("completed").textContent =
-    completed + "/4";
+    });
 
 
   const percent =
     Math.round(completed / 4 * 100);
 
-  document.getElementById("percent").textContent =
+
+  document.getElementById(
+    "completed"
+  ).textContent =
+    completed + "/4";
+
+
+  document.getElementById(
+    "percent"
+  ).textContent =
     percent + "%";
 
-  document.getElementById("progressBar").style.width =
+
+  document.getElementById(
+    "progressBar"
+  ).style.width =
     percent + "%";
 
 
-  document.getElementById("streak").textContent =
+  document.getElementById(
+    "streak"
+  ).textContent =
     calculateStreak();
 
 
   updateWeightChange();
 
   renderHistory();
+
+  renderPeriod();
+
 }
 
 
-document.querySelectorAll(".task").forEach(task=>{
+/* =========================
+   保存今日
+========================= */
 
-  task.addEventListener("click",()=>{
+function saveToday(){
 
-    const index =
-      Number(task.dataset.index);
+  todayData.note =
+    document.getElementById("note").value;
 
-    todayData.tasks[index] =
-      !todayData.tasks[index];
+  const weight =
+    parseFloat(
+      document.getElementById("weight").value
+    );
 
-    saveData();
+  if(!isNaN(weight) && weight > 0){
 
-    updateUI();
+    todayData.weight = weight;
 
-  });
-
-});
-
-
-document.getElementById("note")
-.addEventListener("input",(e)=>{
-
-  todayData.note = e.target.value;
+    updateWeightRecord(weight);
+  }
 
   saveData();
 
-});
+  updateUI();
+
+  alert("🎉 今日打卡已保存！");
+}
+
+
+/* =========================
+   体重
+========================= */
+
+function updateWeightRecord(weight){
+
+  const index =
+    data.weights.findIndex(
+      x=>x.date===today
+    );
+
+  if(index >= 0){
+
+    data.weights[index].weight =
+      weight;
+
+  }else{
+
+    data.weights.push({
+      date:today,
+      weight:weight
+    });
+
+  }
+}
 
 
 function saveWeight(){
@@ -525,148 +1055,19 @@ function saveWeight(){
 
   todayData.weight = value;
 
-  const existing =
-    data.weights.findIndex(
-      x=>x.date===today
-    );
-
-  if(existing >= 0){
-
-    data.weights[existing].weight =
-      value;
-
-  }else{
-
-    data.weights.push({
-      date:today,
-      weight:value
-    });
-
-  }
+  updateWeightRecord(value);
 
   saveData();
 
   updateUI();
 
   alert("⚖️ 今日体重已记录");
-
 }
 
 
-function saveToday(){
-
-  todayData.note =
-    document.getElementById("note").value;
-
-  const weight =
-    parseFloat(
-      document.getElementById("weight").value
-    );
-
-  if(!isNaN(weight) && weight > 0){
-
-    todayData.weight = weight;
-
-    const existing =
-      data.weights.findIndex(
-        x=>x.date===today
-      );
-
-    if(existing >= 0){
-
-      data.weights[existing].weight =
-        weight;
-
-    }else{
-
-      data.weights.push({
-        date:today,
-        weight:weight
-      });
-
-    }
-
-  }
-
-  saveData();
-
-  updateUI();
-
-  alert("🎉 今日打卡已保存！");
-
-}
-
-
-function saveData(){
-
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(data)
-  );
-
-}
-
-
-function calculateStreak(){
-
-  let streak = 0;
-
-  let date = new Date();
-
-  while(true){
-
-    const key =
-      formatDate(date);
-
-    const record =
-      data.history[key];
-
-    if(!record){
-
-      break;
-
-    }
-
-    const complete =
-      record.tasks &&
-      record.tasks.every(Boolean);
-
-    if(!complete){
-
-      break;
-
-    }
-
-    streak++;
-
-    date.setDate(
-      date.getDate()-1
-    );
-
-  }
-
-  return streak;
-
-}
-
-
-function formatDate(date){
-
-  const y =
-    date.getFullYear();
-
-  const m =
-    String(date.getMonth()+1)
-    .padStart(2,"0");
-
-  const d =
-    String(date.getDate())
-    .padStart(2,"0");
-
-  return `${y}-${m}-${d}`;
-
-}
-
+/* =========================
+   体重变化
+========================= */
 
 function updateWeightChange(){
 
@@ -677,14 +1078,15 @@ function updateWeightChange(){
     );
 
   const el =
-    document.getElementById("weightChange");
+    document.getElementById(
+      "weightChange"
+    );
 
   if(weights.length < 2){
 
     el.textContent = "--";
 
     return;
-
   }
 
   const first =
@@ -694,7 +1096,7 @@ function updateWeightChange(){
     weights[weights.length-1].weight;
 
   const diff =
-    latest-first;
+    latest - first;
 
   if(diff > 0){
 
@@ -707,14 +1109,64 @@ function updateWeightChange(){
       diff.toFixed(1);
 
   }
-
 }
 
+
+/* =========================
+   连续打卡
+========================= */
+
+function calculateStreak(){
+
+  let streak = 0;
+
+  let d = new Date();
+
+  while(true){
+
+    const key =
+      d.getFullYear() +
+      "-" +
+      String(d.getMonth()+1).padStart(2,"0") +
+      "-" +
+      String(d.getDate()).padStart(2,"0");
+
+    const record =
+      data.history[key];
+
+    if(!record){
+      break;
+    }
+
+    if(
+      !record.tasks ||
+      !record.tasks.every(Boolean)
+    ){
+      break;
+    }
+
+    streak++;
+
+    d.setDate(
+      d.getDate()-1
+    );
+
+  }
+
+  return streak;
+}
+
+
+/* =========================
+   历史
+========================= */
 
 function renderHistory(){
 
   const box =
-    document.getElementById("history");
+    document.getElementById(
+      "history"
+    );
 
   const records =
     Object.entries(data.history)
@@ -728,65 +1180,305 @@ function renderHistory(){
       '<div class="empty">还没有历史记录</div>';
 
     return;
-
   }
 
   box.innerHTML = "";
 
-  records.forEach(([date,record])=>{
+  records.forEach(
+    ([date,record])=>{
 
-    const count =
-      record.tasks
-      ? record.tasks.filter(Boolean).length
-      : 0;
+      const count =
+        record.tasks
+        ? record.tasks.filter(Boolean).length
+        : 0;
 
-    const div =
-      document.createElement("div");
+      const note =
+        record.note || "没有备注";
 
-    div.className =
-      "history-item";
+      const weight =
+        record.weight
+        ? "体重：" + record.weight + " kg"
+        : "未记录体重";
 
-    div.innerHTML = `
-      <div class="history-date">
-        📅 ${date}
-      </div>
+      const item =
+        document.createElement("div");
 
-      <div class="history-detail">
-        完成 ${count}/4
-        ${record.weight
-          ? " · 体重 " + record.weight + " kg"
-          : ""}
-      </div>
+      item.className =
+        "history-item";
 
-      ${
-        record.note
-        ? `<div class="history-detail">
-             📝 ${escapeHtml(record.note)}
-           </div>`
-        : ""
-      }
-    `;
+      item.innerHTML = `
 
-    box.appendChild(div);
+        <div class="history-date">
+          ${dateText(date)}
+        </div>
 
-  });
+        <div class="history-detail">
+          完成任务：${count}/4<br>
+          ${weight}<br>
+          备注：${escapeHTML(note)}
+        </div>
+
+      `;
+
+      box.appendChild(item);
+
+    }
+  );
+}
+
+
+/* 防止备注里的 HTML 影响页面 */
+
+function escapeHTML(text){
+
+  return String(text)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+
+/* =========================
+   经期
+========================= */
+
+function savePeriod(){
+
+  const start =
+    document.getElementById(
+      "periodStart"
+    ).value;
+
+  const cycle =
+    parseInt(
+      document.getElementById(
+        "cycleLength"
+      ).value
+    );
+
+  const days =
+    parseInt(
+      document.getElementById(
+        "periodDays"
+      ).value
+    );
+
+  if(!start){
+
+    alert("请选择最近一次经期开始日期");
+
+    return;
+  }
+
+  if(
+    isNaN(cycle) ||
+    cycle < 20 ||
+    cycle > 60
+  ){
+
+    alert("请输入正确的周期天数");
+
+    return;
+  }
+
+  if(
+    isNaN(days) ||
+    days < 1 ||
+    days > 15
+  ){
+
+    alert("请输入正确的经期天数");
+
+    return;
+  }
+
+  data.period = {
+
+    start:start,
+
+    cycle:cycle,
+
+    days:days
+
+  };
+
+  saveData();
+
+  renderPeriod();
+
+  alert("🌸 经期信息已保存");
+}
+
+
+/* =========================
+   经期显示
+========================= */
+
+function renderPeriod(){
+
+  const p =
+    data.period;
+
+  document.getElementById(
+    "periodStart"
+  ).value =
+    p.start || "";
+
+  document.getElementById(
+    "cycleLength"
+  ).value =
+    p.cycle || 28;
+
+  document.getElementById(
+    "periodDays"
+  ).value =
+    p.days || 5;
+
+
+  if(!p.start){
+
+    document.getElementById(
+      "periodStatus"
+    ).textContent =
+      "尚未记录";
+
+    document.getElementById(
+      "periodMessage"
+    ).textContent =
+      "记录最近一次经期开始日期";
+
+    document.getElementById(
+      "lastPeriod"
+    ).textContent =
+      "--";
+
+    document.getElementById(
+      "nextPeriod"
+    ).textContent =
+      "--";
+
+    document.getElementById(
+      "cycleDisplay"
+    ).textContent =
+      "-- 天";
+
+    document.getElementById(
+      "periodDisplay"
+    ).textContent =
+      "-- 天";
+
+    return;
+  }
+
+
+  const start =
+    new Date(
+      p.start + "T00:00:00"
+    );
+
+  const next =
+    new Date(start);
+
+  next.setDate(
+    next.getDate() + Number(p.cycle)
+  );
+
+
+  document.getElementById(
+    "lastPeriod"
+  ).textContent =
+    dateText(p.start);
+
+
+  document.getElementById(
+    "nextPeriod"
+  ).textContent =
+    formatDateObject(next);
+
+
+  document.getElementById(
+    "cycleDisplay"
+  ).textContent =
+    p.cycle + " 天";
+
+
+  document.getElementById(
+    "periodDisplay"
+  ).textContent =
+    p.days + " 天";
+
+
+  const now =
+    new Date();
+
+  const diff =
+    Math.floor(
+      (now - start) /
+      86400000
+    );
+
+  let status =
+    "距离下次经期还有一段时间";
+
+  if(diff >= 0){
+
+    const cycleDay =
+      (diff % Number(p.cycle)) + 1;
+
+    if(
+      cycleDay <= Number(p.days)
+    ){
+
+      status = "🌸 可能处于经期";
+
+    }else{
+
+      const daysLeft =
+        Number(p.cycle) - cycleDay + 1;
+
+      status =
+        "预计还有 " +
+        daysLeft +
+        " 天左右";
+    }
+  }
+
+
+  document.getElementById(
+    "periodStatus"
+  ).textContent =
+    status;
+
+  document.getElementById(
+    "periodMessage"
+  ).textContent =
+    "预计下次：" +
+    formatDateObject(next);
 
 }
 
 
-function escapeHtml(text){
+/* =========================
+   日期格式
+========================= */
 
-  const div =
-    document.createElement("div");
+function formatDateObject(d){
 
-  div.textContent = text;
-
-  return div.innerHTML;
-
+  return (
+    d.getFullYear() +
+    "/" +
+    String(d.getMonth()+1).padStart(2,"0") +
+    "/" +
+    String(d.getDate()).padStart(2,"0")
+  );
 }
 
 
-saveData();
+/* =========================
+   启动
+========================= */
 
 updateUI();
 
