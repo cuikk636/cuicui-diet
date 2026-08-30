@@ -1377,7 +1377,29 @@ function save(){
 
 
 function showAllRecords(){
-  alert("全部记录功能已打开");
+  const dayStore = JSON.parse(localStorage.getItem(DAYS_KEY) || "{}");
+  const dates = Object.keys(dayStore).sort().reverse();
+
+  if(dates.length === 0){
+    alert("暂时还没有历史记录");
+    return;
+  }
+
+  let text = "📅 全部打卡记录\n\n";
+
+  dates.forEach(date => {
+    const r = dayStore[date] || {};
+    const tasks = r.tasks || {};
+    const done = Object.values(tasks).filter(Boolean).length;
+
+    text +=
+      "💗 " + date + "\n" +
+      "⚖️ 体重：" + (r.weight || "--") + " kg\n" +
+      "⭐ 完成：" + done + "/5\n" +
+      "📝 备注：" + (r.note || "无") + "\n\n";
+  });
+
+  alert(text);
 }
 rebuildRecords();
 render();
