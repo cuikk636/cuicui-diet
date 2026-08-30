@@ -1,4 +1,4 @@
-<!doctype html>
+6<!doctype html>
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
@@ -1438,7 +1438,10 @@ function showAllRecords(){
 
     text += `
   <div class="record-item">
-    <div class="record-date">💗 ${date}</div>
+  <div class="record-date">
+    <span>💗 ${date}</span>
+    <button class="record-delete" onclick="deleteRecord('${date}')">🗑️</button>
+  </div>
     <div>⚖️ 体重：${r.weight || "--"} kg</div>
     <div>⭐ 完成：${done}/5</div>
     <div>📝 备注：${r.note || "无"}</div>
@@ -1448,6 +1451,32 @@ function showAllRecords(){
 
   showRecordsModal(text);
 }
+ function deleteRecord(date){ 
+  if(!confirm("确定要删除 " + date + " 的打卡记录吗？")){
+    return;
+  }
+
+  delete dayStore[date];
+   localStorage.setItem(DAYS_KEY, JSON.stringify(dayStore));
+
+  const s = load();
+  if(s.days){
+    delete s.days[date];
+  }
+
+  localStorage.setItem(
+    KEY,
+    JSON.stringify(s)
+  );
+
+  closeRecordsModal();
+  rebuildRecords();
+  render();
+
+  setTimeout(() => {
+    showAllRecords();
+      }, 100); 
+  } 
   function showRecordsModal(text){
   let modal = document.getElementById("allRecordsModal");
 
