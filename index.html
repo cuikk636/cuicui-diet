@@ -1470,6 +1470,17 @@ function showAllRecords(){
   if(s.days){
     delete s.days[date];
   }
+   if(date === TODAY){
+  s.todayWeight = 0;
+  s.note = "";
+  s.tasks = {
+    food:false,
+    sport:false,
+    sleep:false,
+    tea:false,
+    water:false
+  };
+}
 
   localStorage.setItem(
     KEY,
