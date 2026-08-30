@@ -1493,8 +1493,12 @@ function showAllRecords(){
   render();
 
   setTimeout(() => {
+  if(Object.keys(dayStore).length === 0){
+    alert("暂无历史记录");
+  }else{
     showAllRecords();
-      }, 100); 
+  }
+}, 100);
   } 
   function showRecordsModal(text){
   let modal = document.getElementById("allRecordsModal");
