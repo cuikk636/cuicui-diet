@@ -1372,31 +1372,19 @@ let dayStore = JSON.parse(
 );
 
 /* 第一次升级时，把你现在已有的今日数据保留下来 */
-if(!dayStore[TODAY]){
-  dayStore[TODAY] = {
-    weight: Number(s.todayWeight),
-    note: s.note || "",
-    tasks: {
-      food: !!s.tasks.food,
-      sport: !!s.tasks.sport,
-      sleep: !!s.tasks.sleep,
-      tea: !!s.tasks.tea,
-      water: !!s.tasks.water
-    }
+
+if(dayStore[TODAY]){
+  s.todayWeight = Number(dayStore[TODAY].weight || s.todayWeight);
+  s.note = dayStore[TODAY].note || "";
+  s.tasks = {
+    food:false,
+    sport:false,
+    sleep:false,
+    tea:false,
+    water:false,
+    ...(dayStore[TODAY].tasks || {})
   };
 }
-localStorage.setItem(DAYS_KEY, JSON.stringify(dayStore));
-/* 今天自动读取今天自己的数据 */
-s.todayWeight = Number(dayStore[TODAY].weight ?? s.todayWeight);
-s.note = dayStore[TODAY].note || "";
-s.tasks = {
-  food:false,
-  sport:false,
-  sleep:false,
-  tea:false,
-  water:false,
-  ...(dayStore[TODAY].tasks || {})
-};
 
 function rebuildRecords(){
   s.records = Object.keys(dayStore)
