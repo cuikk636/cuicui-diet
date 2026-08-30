@@ -1377,7 +1377,7 @@ function save(){
 
 
 function showAllRecords(){
-  const dayStore = JSON.parse(localStorage.getItem(DAYS_KEY) || "{}");
+  
   const dates = Object.keys(dayStore).sort().reverse();
 
   if(dates.length === 0){
